@@ -59,3 +59,5 @@ var books = (function () {
         getBooks : getBooks
     }
 } ());
+
+export {books};

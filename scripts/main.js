@@ -1,3 +1,7 @@
+import {users} from './kinvey/users.js';
+import {books} from './kinvey/books.js';
+import {templates} from './kinvey/templates.js';
+
 var sammyApp = Sammy("#content", function() {
             var $content = $("#content");
 
