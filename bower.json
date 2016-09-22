@@ -1,0 +1,17 @@
+{
+  "name": "super-secret-project",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "shakuu <todorov.h@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Team-Watchmen/super-secret-project",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
