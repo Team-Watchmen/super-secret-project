@@ -1,3 +1,5 @@
+import {encriptor} from './encriptor.js';
+
 var users = (function () {
     const AUTH_TOKEN = 'auth-token';
     const USER_NAME = 'username';
@@ -93,3 +95,5 @@ var users = (function () {
         isUserLogged: isUserLogged
     }
 } ());
+
+export {users};

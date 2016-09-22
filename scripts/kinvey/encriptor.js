@@ -10,3 +10,5 @@ var encriptor = (function () {
         encriptToBase64 : encryptToBase64
     }
 } ());
+
+export {encriptor};
