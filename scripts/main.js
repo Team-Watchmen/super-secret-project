@@ -2,6 +2,8 @@ import {users} from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
 
+import {profileScreen} from './profile/profileScreen.js';
+
 var sammyApp = Sammy("#content", function () {
     var $content = $("#content");
 
@@ -45,7 +47,7 @@ var sammyApp = Sammy("#content", function () {
 
                     users.login(logUser)
                         .then(function (response) {
-                            context.redirect('#/');
+                            context.redirect('#/profile');
                             document.location.reload(true);
                         });
                 });
@@ -86,12 +88,16 @@ var sammyApp = Sammy("#content", function () {
             // Locations List section.
             // Weather display section.
             // Add location section
+            profileScreen.start('#content');
+            profileScreen.displayLocationsListForUser('#location-list');
     });
 
-    this.get('#/profile/:location/:duration', function (params) {
+    this.get('#/profile/:location/:duration', function (route) {
         // Display weather location
             // for params.location
             // with params.duration
+            console.log(route.params.location);
+            console.log(route.params.duration);
     });
 });
 
