@@ -8,6 +8,7 @@ var books = (function () {
 
     // when logged in 
     // autorizationString - "username:password"
+    //use this credentials for testing
     const autorizationString = `${localStorage.getItem("username")}:${CryptoJS.SHA1("test").toString()}`;
 
     //WIth basic autentication
