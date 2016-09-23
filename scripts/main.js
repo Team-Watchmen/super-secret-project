@@ -2,6 +2,7 @@ import {users} from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
 import {getWeather} from './weather/get-weather.js';
+import {maps} from './maps/create-map.js';
 
 import {profileScreen} from './profile/profileScreen.js';
 
@@ -98,6 +99,15 @@ var sammyApp = Sammy("#content", function () {
         // for params.location
         // with params.duration
         getWeather.oneDay(route.params.location)
+            .then((data) => {
+                maps.initializeMap(
+                    data.coord.lat,
+                    data.coord.lon,
+                    document.getElementById('location-element')
+                );
+
+                return data;
+            })
             .then(console.log);
     });
 
