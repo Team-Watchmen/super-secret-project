@@ -4,6 +4,7 @@ var users = (function () {
     const AUTH_TOKEN = 'auth-token';
     const USER_NAME = 'user-name';
     const USER_ID = "user-id";
+    const USER_LOCATIONS = "user-locations";
 
     const APP_ID = "kid_rJYhi_p3";
     const APP_SECRET = "5284c0a9f27b4f7cb2c18cf9e11d7b80";
@@ -74,6 +75,7 @@ var users = (function () {
             localStorage.removeItem(AUTH_TOKEN);
             localStorage.removeItem(USER_NAME);
             localStorage.removeItem(USER_ID);
+            localStorage.removeItem(USER_LOCATIONS);
 
             resolve();
         });
@@ -94,7 +96,11 @@ var users = (function () {
                 data: JSON.stringify(),
                 contentType: 'application/json',
                 success: function (response) {
-                    resolve(response["favourite-locations"]);
+                    var locations = response["favourite-locations"].split(",");
+
+                    localStorage.setItem(USER_LOCATIONS, locations);
+
+                    resolve(locations);
                 }
             });
         });
