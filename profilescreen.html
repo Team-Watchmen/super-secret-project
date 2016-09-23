@@ -10,15 +10,22 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div id="location-list-container" class=" col-md-2">
+            <div id="location-list-container" class=" col-md-3">
                 <div id="add-location" class="row">
-                    "add-location"
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Add</span>
+                        <input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon1">
+                    </div>
                 </div>
-                <ul id="location-list">
-                    "location-list"
-                </ul>
+                <div class="row">
+                    <div class="well">
+                        <ul id="location-list" class="nav nav-pills nav-stacked">
+                            <li role="presentation" class="active"><a href="">"location-list"</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div id="weather" class=" col-md-10">
+            <div id="weather" class=" col-md-9">
                 weather
             </div>
         </div>
