@@ -40,9 +40,9 @@ const getWeatherOneDay = function ($cityName, locationElement) {
     //     })
     //     .catch(error => console.log(error));
 
-    // function getCurrentWeatherForCity(cityName) {
-    //     return $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&APPID=a28f075ad9633624934634a4d49a37c5');
-    // }
+    function getCurrentWeatherForCity(cityName) {
+        return $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&APPID=a28f075ad9633624934634a4d49a37c5');
+    }
 
     // // To initialize the map, we need to refer to google maps API in index.html.
     // function initializeMap(latitude, longitude, idSelector) {
