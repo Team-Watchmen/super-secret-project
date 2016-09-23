@@ -2,7 +2,7 @@
  * Created by deyanaleksandrov on 9/23/16.
  */
 
-$(function () {
+const getWeatherFiveDay = function () {
 
     // I put a string just for practice, it can work with click event function or input event function, whatever we decide like the other function
     let $cityName = 'Simitli';
@@ -34,4 +34,6 @@ $(function () {
             + cityName +
             "&cnt=5&mode=json&units=metric&appid=a28f075ad9633624934634a4d49a37c5");
     }
-});
+};
+
+export { getWeatherFiveDay };
