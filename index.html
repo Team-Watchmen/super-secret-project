@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Workshop: Simple Forum with Sammy.js, jQuery and Handlebars</title>
-    <!--Google API with special key below. Map does not work without this.-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap" async
-        defer></script>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <style>
         /* Styles can be moved to the right place, this is just to get the map going. */
@@ -71,11 +68,15 @@
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src="./scripts/system-config.js"></script>
     <script>
-    System.import('main');
+        System.import('main');
     // System.import('get-current-weather');
     // System.import('get-five-day-forecast');
     // System.import('get-fourteen-day-forecast');
-</script>
+        function initMap(){}
+    </script>
+    <!--Google API with special key below. Map does not work without this.-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap" async
+        defer></script>
 </body>
 
 </html>
