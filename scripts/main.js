@@ -11,10 +11,10 @@ var sammyApp = Sammy("#content", function() {
                 if (loggedUser) {
                     $content.html(loggedUser.username);
 
-                    books.getBooks()
+                    users.getUserLocations()
                         .then(function(response) {
-                            console.log(response[1].title + " " + response[1].author);
-                        })
+                            console.log(response);
+                        });
                 }
             });
 
