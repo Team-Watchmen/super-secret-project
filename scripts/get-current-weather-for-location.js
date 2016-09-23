@@ -48,7 +48,7 @@ $(function () {
 
     // To initialize the map, we need to refer to google maps API in index.html.
     function initializeMap(latitude, longitude, idSelector) {
-        var myCenter = new google.maps.LatLng(latitude, longitude),
+        let myCenter = new google.maps.LatLng(latitude, longitude),
 
             // Create map with center and type
             mapProp = {
@@ -58,7 +58,7 @@ $(function () {
             };
 
         // Attach it to selector.
-        var map = new google.maps.Map((idSelector), mapProp);
+        let map = new google.maps.Map((idSelector), mapProp);
 
         // Get little red marker in map center.
         new google.maps.Marker({

@@ -5,7 +5,7 @@
 $(function () {
 
     // I put a string just for practice, it can work with click event function or input event function, whatever we decide like the other function
-    var $cityName = 'Pernik';
+    let $cityName = 'Pernik';
 
     // 5 day data promise function.
     const functionThatReturnFiveDayForecastData = (success) => {
