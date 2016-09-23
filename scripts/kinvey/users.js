@@ -95,7 +95,15 @@ var users = (function () {
                 data: JSON.stringify(),
                 contentType: 'application/json',
                 success: function (response) {
-                    var locations = response[USER_FAVOURITE_LOCATIONS].split(",");
+                    var locations = response[USER_FAVOURITE_LOCATIONS];
+
+                    if (locations) {
+                        locations = locations.split(",");
+                    } else {
+                        locations = [];
+                    }
+
+                    console.log("getUserLocations " + locations);
 
                     localStorage.setItem(USER_FAVOURITE_LOCATIONS, locations);
 
@@ -110,7 +118,13 @@ var users = (function () {
     var setUserLocations = function (location) {
         var promise = new Promise(function (resolve, reject) {
             var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
+            console.log(locations);
             
+            if (!locations) {
+                locations = "";
+                console.log("NO USER LOCATION");
+            }
+
             if (locations.indexOf(location) === -1) {
 
                 locations = addLocation(location, locations);
@@ -129,7 +143,7 @@ var users = (function () {
                     contentType: 'application/json',
                     success: function (response) {
                         localStorage.setItem(USER_FAVOURITE_LOCATIONS, locations);
-                        
+
                         resolve(response);
                     }
                 });
@@ -157,8 +171,19 @@ var users = (function () {
     }
 
     var addLocation = function (location, locations) {
-        var result = locations;
-        result += `,${location}`;
+        var result = [];
+
+        if (locations) {
+            result = locations.split(",");
+            console.log("SPLIT - " + result);
+            result.push(location);
+            console.log("AFTER PUSH - " + result);
+            result = result.join(",");
+            console.log("AFTER JOIN - " + result);
+        } else {
+            result = location;
+            console.log("first location " + result);
+        }
 
         return result;
     }
