@@ -4,7 +4,8 @@
 $(function () {
 
     // I put a string just for practice, it can work with click event function or input event function, whatever we decide.
-    var $cityName = 'Tokyo';
+    let $cityName = 'Tokyo',
+        locationElement = document.getElementById("location-element");
 
     // Current weather data promise function.
     const functionThatReturnCurrentWeatherData = (success) => {
@@ -20,9 +21,22 @@ $(function () {
 
     functionThatReturnCurrentWeatherData(getCurrentWeatherForCity($cityName))
         .then(data=> {
-            console.log("CURRENT WEATHER for");
-            console.log(data.name);
-            // console.log(data);
+            //console.log("CURRENT WEATHER for");
+            //console.log(data.name);
+            //console.log(data);
+            return coordsObject = {
+                lat: data.coord.lat,
+                long: data.coord.lon
+            };
+
+        })
+
+        .then(coordinates=> {
+            console.log(coordinates.lat);
+            console.log(coordinates.long);
+
+            initializeMap(coordinates.lat, coordinates.long, locationElement);
+
 
         })
         .catch(error =>console.log(error));
@@ -31,4 +45,26 @@ $(function () {
     function getCurrentWeatherForCity(cityName) {
         return $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&APPID=a28f075ad9633624934634a4d49a37c5');
     }
+
+    // To initialize the map, we need to refer to google maps API in index.html.
+    function initializeMap(latitude, longitude, idSelector) {
+        let myCenter = new google.maps.LatLng(latitude, longitude),
+
+            // Create map with center and type
+            mapProp = {
+                center: myCenter,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+        // Attach it to selector.
+        let map = new google.maps.Map((idSelector), mapProp);
+
+        // Get little red marker in map center.
+        new google.maps.Marker({
+            position: myCenter,
+            map: map
+        });
+    }
 });
+
