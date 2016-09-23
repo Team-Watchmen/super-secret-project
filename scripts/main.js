@@ -1,6 +1,7 @@
 import {users} from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
+import {getWeather} from './weather/get-weather.js';
 
 import {profileScreen} from './profile/profileScreen.js';
 
@@ -14,14 +15,14 @@ var sammyApp = Sammy("#content", function () {
             $content.html(loggedUser.username);
 
             users.getUserLocations()
-                        .then(function(response) {
-                            console.log(response);
-                        });
-            
+                .then(function (response) {
+                    console.log(response);
+                });
+
             //Test non-added location
             var locationName = "Gorna Banq";
             users.setUserLocations(locationName)
-                .then(function(response) {
+                .then(function (response) {
                     console.log(response);
                 });
         }
@@ -84,23 +85,23 @@ var sammyApp = Sammy("#content", function () {
 
     this.get('#/profile', function () {
         // Profile Screen
-            // No locations added version.
-            // Locations List section.
-            // Weather display section.
-            // Add location section
-            profileScreen.start('#content');
-            profileScreen.displayLocationsListForUser('#location-list');
+        // No locations added version.
+        // Locations List section.
+        // Weather display section.
+        // Add location section
+        profileScreen.start('#content');
+        profileScreen.displayLocationsListForUser('#location-list');
     });
 
     this.get('#/profile/:location/:duration', function (route) {
         // Display weather location
-            // for params.location
-            // with params.duration
-            console.log(route.params.location);
-            console.log(route.params.duration);
+        // for params.location
+        // with params.duration
+        getWeather.oneDay(route.params.location)
+            .then(console.log);
     });
 
-    this.get('#/profile/add/:location', function (route){
+    this.get('#/profile/add/:location', function (route) {
         // add new location to user in kinvey
     });
 });
