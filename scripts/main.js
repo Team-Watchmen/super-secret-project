@@ -47,7 +47,7 @@ var sammyApp = Sammy("#content", function () {
 
                     users.login(logUser)
                         .then(function (response) {
-                            context.redirect('#/');
+                            context.redirect('#/profile');
                             document.location.reload(true);
                         });
                 });
