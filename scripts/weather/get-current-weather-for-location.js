@@ -1,11 +1,11 @@
 /**
  * Created by deyanaleksandrov on 9/23/16.
  */
-$(function () {
+const getWeatherOneDay = function ($cityName, locationElement) {
 
     // I put a string just for practice, it can work with click event function or input event function, whatever we decide.
-    let $cityName = 'Tokyo',
-        locationElement = document.getElementById("location-element");
+    // let $cityName = 'Tokyo',
+    //     locationElement = document.getElementById("location-element");
 
     // Current weather data promise function.
     const functionThatReturnCurrentWeatherData = (success) => {
@@ -16,7 +16,7 @@ $(function () {
             else {
                 reject('failed')
             }
-        })
+        });
     };
 
     functionThatReturnCurrentWeatherData(getCurrentWeatherForCity($cityName))
@@ -28,7 +28,6 @@ $(function () {
                 lat: data.coord.lat,
                 long: data.coord.lon
             };
-
         })
 
         .then(coordinates=> {
@@ -36,11 +35,8 @@ $(function () {
             console.log(coordinates.long);
 
             initializeMap(coordinates.lat, coordinates.long, locationElement);
-
-
         })
         .catch(error =>console.log(error));
-
 
     function getCurrentWeatherForCity(cityName) {
         return $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&APPID=a28f075ad9633624934634a4d49a37c5');
@@ -66,5 +62,7 @@ $(function () {
             map: map
         });
     }
-});
+};
+
+export {getWeatherOneDay};
 
