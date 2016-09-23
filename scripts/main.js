@@ -89,6 +89,7 @@ var sammyApp = Sammy("#content", function () {
             // Weather display section.
             // Add location section
             profileScreen.start('#content');
+            profileScreen.displayLocationsListForUser('#location-list');
     });
 
     this.get('#/profile/:location/:duration', function (route) {

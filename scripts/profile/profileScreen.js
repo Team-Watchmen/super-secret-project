@@ -1,4 +1,5 @@
 import { templates } from '../kinvey/templates.js';
+import { users } from '../kinvey/users.js';
 
 const profileScreen = (() => {
     function start(container) {
@@ -9,8 +10,23 @@ const profileScreen = (() => {
             });
     }
 
+    function displayLocationsListForUser(container) {
+        Promise.all([
+            templates.get('location-list-item'),
+            users.getUserLocations()
+        ])
+            .then(([template, locations]) => {
+                const html = template(locations);
+                return html;
+            })
+            .then((html) => {
+                $(container).html(html);
+            });
+    }
+
     return {
-        start
+        start,
+        displayLocationsListForUser
     };
 })();
 
