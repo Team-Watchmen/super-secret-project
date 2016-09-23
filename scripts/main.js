@@ -81,10 +81,12 @@ var sammyApp = Sammy("#content", function () {
             // Add location section
     });
 
-    this.get('#/profile/:location/:duration', function (params) {
+    this.get('#/profile/:location/:duration', function (route) {
         // Display weather location
             // for params.location
             // with params.duration
+            console.log(params.params.location);
+            console.log(params.params.duration);
     });
 });
 
