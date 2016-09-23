@@ -88,16 +88,16 @@ var sammyApp = Sammy("#content", function () {
             // Locations List section.
             // Weather display section.
             // Add location section
-            profileScreen.start('#content');
-            profileScreen.displayLocationsListForUser('#location-list');
+        profileScreen.start('#content');
+        profileScreen.displayLocationsListForUser('#location-list');
     });
 
     this.get('#/profile/:location/:duration', function (route) {
         // Display weather location
             // for params.location
             // with params.duration
-            console.log(route.params.location);
-            console.log(route.params.duration);
+        console.log(route.params.location);
+        console.log(route.params.duration);
     });
 });
 
