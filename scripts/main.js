@@ -111,7 +111,7 @@ var sammyApp = Sammy("#content", function () {
             .then(console.log);
     });
 
-    this.get('#/profile/add/:location', function (route) {
+    this.get('#/profile/add', function (route) {
         // add new location to user in kinvey
     });
 });
