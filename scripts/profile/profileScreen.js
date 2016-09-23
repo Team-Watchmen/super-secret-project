@@ -1,8 +1,12 @@
 import { templates } from '../kinvey/templates.js';
- 
+
 const profileScreen = (() => {
-    function start() {
-        templates.get('profile-screen');
+    function start(container) {
+        templates.get('profile-screen')
+            .then((template) => {
+                const html = template(null);
+                $(container).html(html);
+            });
     }
 
     return {

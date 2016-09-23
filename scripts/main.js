@@ -2,6 +2,8 @@ import {users} from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
 
+import {profileScreen} from './profile/profileScreen.js';
+
 var sammyApp = Sammy("#content", function () {
     var $content = $("#content");
 
@@ -86,6 +88,7 @@ var sammyApp = Sammy("#content", function () {
             // Locations List section.
             // Weather display section.
             // Add location section
+            profileScreen.start('#content');
     });
 
     this.get('#/profile/:location/:duration', function (route) {
