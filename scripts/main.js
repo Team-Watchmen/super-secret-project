@@ -99,6 +99,10 @@ var sammyApp = Sammy("#content", function () {
             console.log(route.params.location);
             console.log(route.params.duration);
     });
+
+    this.get('#/profile/add/:location', function (route){
+        // add new location to user in kinvey
+    });
 });
 
 //logout
