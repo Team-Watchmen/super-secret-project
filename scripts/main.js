@@ -90,20 +90,24 @@ var sammyApp = Sammy("#content", function () {
         // Locations List section.
         // Weather display section.
         // Add location section
-        profileScreen.start('#content');
-        profileScreen.displayLocationsListForUser('#location-list');
+        startProfileScreen();
     });
 
     this.get('#/profile/:location/:duration', function (route) {
         // Display weather location
         // for params.location
         // with params.duration
+        const profileScreen = $('#profile-screen');
+        if (profileScreen.length === 0) {
+            startProfileScreen();
+        }
+
         getWeather.oneDay(route.params.location)
             .then((data) => {
                 maps.initializeMap(
                     data.coord.lat,
                     data.coord.lon,
-                    document.getElementById('location-element')
+                    document.getElementById('map-container')
                 );
 
                 return data;
@@ -114,6 +118,11 @@ var sammyApp = Sammy("#content", function () {
     this.get('#/profile/add', function (route) {
         // add new location to user in kinvey
     });
+
+    function startProfileScreen() {
+        profileScreen.start('#content');
+        profileScreen.displayLocationsListForUser('#location-list');
+    }
 });
 
 //logout
