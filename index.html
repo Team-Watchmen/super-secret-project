@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <title>Workshop: Simple Forum with Sammy.js, jQuery and Handlebars</title>
     <!--Google API with special key below. Map does not work without this.-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap"
-            async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap" async
+        defer></script>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <style>
         /* Styles can be moved to the right place, this is just to get the map going. */
+        
         #location-element {
-            position: relative;
+            position: absolute;
             top: 500px;
             left: 500px;
             height: 300px;
@@ -21,57 +22,55 @@
 </head>
 
 <body>
-<!-- Fixed navbar -->
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1"
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                     aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/">Forum</a>
-        </div>
+                <a class="navbar-brand" href="#/">Forum</a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#/profile">My Profile</a></li>
-                <li><a href="#/books">Treads</a></li>
-                <li><a href="#/about">About us</a></li>
-            </ul>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/profile">My Profile</a></li>
+                    <li><a href="#/books">Treads</a></li>
+                    <li><a href="#/about">About us</a></li>
+                </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a id="nav-btn-login" href="#/login">Log in</a></li>
-                <li><a id="nav-btn-register" href="#/register">Register</a></li>
-                <li><a id="nav-btn-logout" href="#/">Logout</a></li>
-            </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="nav-btn-login" href="#/login">Log in</a></li>
+                    <li><a id="nav-btn-register" href="#/register">Register</a></li>
+                    <li><a id="nav-btn-logout" href="#/">Logout</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.navbar-collapse -->
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- map element below -->
+    <div id="location-element"></div>
+
+    <div id="content" class="container-fluid">
     </div>
-    <!-- /.container-fluid -->
-</nav>
 
-<!-- map element below -->
-<div id="location-element"></div>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/sammy/lib/sammy.js"></script>
+    <script src="node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="node_modules/crypto-js/crypto-js.js"></script>
 
-<div id="content" class="container">
-</div>
-
-
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="node_modules/sammy/lib/sammy.js"></script>
-<script src="node_modules/handlebars/dist/handlebars.js"></script>
-<script src="node_modules/crypto-js/crypto-js.js"></script>
-
-<script src="./node_modules/systemjs/dist/system.js"></script>
-<script src="./scripts/system-config.js"></script>
-<script>
+    <script src="./node_modules/systemjs/dist/system.js"></script>
+    <script src="./scripts/system-config.js"></script>
+    <script>
     System.import('main');
     System.import('get-current-weather');
     System.import('get-five-day-forecast');
