@@ -15,6 +15,13 @@ var sammyApp = Sammy("#content", function () {
                         .then(function(response) {
                             console.log(response);
                         });
+            
+            //Test non-added location
+            var locationName = "Gorna Banq";
+            users.setUserLocations(locationName)
+                .then(function(response) {
+                    console.log(response);
+                });
         }
     });
 

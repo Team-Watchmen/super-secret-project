@@ -4,15 +4,15 @@ var users = (function () {
     const AUTH_TOKEN = 'auth-token';
     const USER_NAME = 'user-name';
     const USER_ID = "user-id";
-    const USER_LOCATIONS = "user-locations";
+    const USER_FAVOURITE_LOCATIONS = "favourite-locations";
 
     const APP_ID = "kid_rJYhi_p3";
     const APP_SECRET = "5284c0a9f27b4f7cb2c18cf9e11d7b80";
     // const APP_MASTER = "1914c665b14a46a7ac55268a1fed6ad3";
     const autorizationString = `${APP_ID}:${APP_SECRET}`;
-    
+
     const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
-    
+
     var register = function (user) {
         var promise = new Promise(function (resolve, reject) {
             var reqUser = {
@@ -75,7 +75,7 @@ var users = (function () {
             localStorage.removeItem(AUTH_TOKEN);
             localStorage.removeItem(USER_NAME);
             localStorage.removeItem(USER_ID);
-            localStorage.removeItem(USER_LOCATIONS);
+            localStorage.removeItem(USER_FAVOURITE_LOCATIONS);
 
             resolve();
         });
@@ -84,9 +84,8 @@ var users = (function () {
     }
 
     var getUserLocations = function () {
-        console.log(localStorage.getItem(USER_ID));
-        var promise = new Promise(function(resolve, reject) {
-            
+        var promise = new Promise(function (resolve, reject) {
+
             $.ajax({
                 url: `https://baas.kinvey.com/user/${APP_ID}/${localStorage.getItem(USER_ID)}`,
                 method: 'GET',
@@ -96,13 +95,48 @@ var users = (function () {
                 data: JSON.stringify(),
                 contentType: 'application/json',
                 success: function (response) {
-                    var locations = response["favourite-locations"].split(",");
+                    var locations = response[USER_FAVOURITE_LOCATIONS].split(",");
 
-                    localStorage.setItem(USER_LOCATIONS, locations);
+                    localStorage.setItem(USER_FAVOURITE_LOCATIONS, locations);
 
                     resolve(locations);
                 }
             });
+        });
+
+        return promise;
+    }
+
+    var setUserLocations = function (location) {
+        var promise = new Promise(function (resolve, reject) {
+            var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
+            
+            if (locations.indexOf(location) === -1) {
+
+                locations = addLocation(location, locations);
+
+                var body = {
+                    "favourite-locations": locations
+                };
+
+                $.ajax({
+                    url: `https://baas.kinvey.com/user/${APP_ID}/${localStorage.getItem(USER_ID)}`,
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Kinvey ${sessionUserCredentials}`
+                    },
+                    data: JSON.stringify(body),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        localStorage.setItem(USER_FAVOURITE_LOCATIONS, locations);
+                        
+                        resolve(response);
+                    }
+                });
+            } else {
+                resolve("Location is already added!");
+            }
+
         });
 
         return promise;
@@ -122,11 +156,19 @@ var users = (function () {
         return null;
     }
 
+    var addLocation = function (location, locations) {
+        var result = locations;
+        result += `,${location}`;
+
+        return result;
+    }
+
     return {
         register: register,
         login: login,
         logout: logout,
         getUserLocations: getUserLocations,
+        setUserLocations: setUserLocations,
         isUserLogged: isUserLogged
     }
 } ());
