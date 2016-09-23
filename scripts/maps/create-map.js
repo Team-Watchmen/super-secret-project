@@ -1,7 +1,11 @@
 const maps = (() => {
     // To initialize the map, we need to refer to google maps API in index.html.
     function initializeMap(latitude, longitude, idSelector) {
-        const myCenter = new google.maps.LatLng(latitude, longitude)
+        if (!(idSelector instanceof HTMLElement)) {
+            idSelector = document.getElementById(idSelector);
+        }
+
+        const myCenter = new google.maps.LatLng(latitude, longitude);
 
         // Create map with center and type
         const mapProp = {

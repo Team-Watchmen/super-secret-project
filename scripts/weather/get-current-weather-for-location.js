@@ -1,8 +1,6 @@
 /**
  * Created by deyanaleksandrov on 9/23/16.
  */
-import {maps} from '../maps/create-map.js';
-
 const getWeatherOneDay = function ($cityName, locationElement) {
 
     // I put a string just for practice, it can work with click event function or input event function, whatever we decide.
