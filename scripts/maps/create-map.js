@@ -1,4 +1,4 @@
-const createMap = (() => {
+const maps = (() => {
     // To initialize the map, we need to refer to google maps API in index.html.
     function initializeMap(latitude, longitude, idSelector) {
         const myCenter = new google.maps.LatLng(latitude, longitude)
@@ -21,8 +21,8 @@ const createMap = (() => {
     }
 
     return {
-        init: initializeMap
+        initializeMap
     };
 })();
 
-export { createMap };
+export { maps };
