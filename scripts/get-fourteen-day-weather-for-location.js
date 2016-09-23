@@ -21,9 +21,9 @@ $(function () {
 
     functionThatReturnFiveDayForecastData(getFiveDayJSONForCity($cityName))
         .then(data=> {
-            console.log("FOURTEEN-DAY FORECAST for");
-            console.log(data.city.name);
-            // console.log(data);
+            // console.log("FOURTEEN-DAY FORECAST for");
+            // console.log(data.city.name);
+            console.log(data);
 
         })
         .catch(error =>console.log(error));
