@@ -97,9 +97,6 @@ var sammyApp = Sammy("#content", function () {
         // Display weather location
         // for params.location
         // with params.duration
-        console.log(route.params.location);
-        console.log(route.params.duration);
-
         getWeather.oneDay(route.params.location)
             .then(console.log);
     });
