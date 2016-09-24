@@ -1,0 +1,38 @@
+<ul>
+    {{#each list}}
+        <li>
+            <div>
+                {{dt}}
+            </div>
+            <div>
+                {{description}}
+            </div>
+
+            <div>
+                {{temp.day}}°C
+            </div>
+            <div>
+                <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon"
+                >
+            </div>
+
+            <article>
+                <div>
+                    Pressure: <span>{{pressure}}</span> hPA
+                </div>
+                <div>
+                    Humidity: {{humidity}} %
+                </div>
+                <div>
+                    Wind: <span>{{speed}}</span> m/s
+                </div>
+            </article>
+
+            <aside>
+                <div>Max t: <span>{{temp.max}}</span>°C</div>
+                <div>Min t: <span>{{temp.min}}</span>°C
+                </div>
+            </aside>
+        </li>
+    {{/each}}
+</ul>

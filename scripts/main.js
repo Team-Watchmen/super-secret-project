@@ -7,7 +7,8 @@ import {maps} from './maps/create-map.js';
 import {profileScreen} from './profile/profileScreen.js';
 
 var sammyApp = Sammy("#content", function () {
-    var $content = $("#content");
+    var $content = $("#content"),
+        $weatherInfo = $("#weather");
 
     this.get("#/", function () {
         $content.html("GOsho");
@@ -98,17 +99,66 @@ var sammyApp = Sammy("#content", function () {
             startProfileScreen();
         }
 
-        getWeather.oneDay(route.params.location)
-            .then((data) => {
+            //One day get weather map and weather-info done
+
+    //     getWeather.oneDay(route.params.location)
+    //         .then(function(data) {
+    //             maps.initializeMap(
+    //                 data.coord.lat,
+    //                 data.coord.lon,
+    //                 document.getElementById('map-container')
+    //             );
+    //
+    //
+    //             return data;
+    //         })
+    //         .then(function(data){
+    //             Promise.all([data,templates.get("current-weather")])
+    //                 .then(function ([data,template]) {
+    //
+    //                     $("#weather").html(template(data));
+    //                 })
+    //         });
+    // });
+
+        // WORKING, COMMENTED JUST FOR NOW
+
+//     getWeather.fiveDay(route.params.location)
+//         .then(function(data) {
+//             maps.initializeMap(
+//                 data.city.coord.lat,
+//                 data.city.coord.lon,
+//                 document.getElementById('map-container')
+//             );
+//
+//
+//             return data;
+//         })
+//         .then(function(data){
+//             Promise.all([data,templates.get("five-day")])
+//                 .then(function ([data,template]) {
+//                      $("#weather").html(template(data));
+//                 })
+//         });
+// });
+
+        getWeather.fourteenDay(route.params.location)
+            .then(function(data) {
                 maps.initializeMap(
-                    data.coord.lat,
-                    data.coord.lon,
+                    data.city.coord.lat,
+                    data.city.coord.lon,
                     document.getElementById('map-container')
                 );
 
+
                 return data;
             })
-            .then(console.log);
+            .then(function(data){
+                Promise.all([data,templates.get("fourteen-day")])
+                    .then(function ([data,template]) {
+                        $("#weather").html(template(data));
+                    })
+            });
     });
 
     this.get('#/profile/add', function (route) {
