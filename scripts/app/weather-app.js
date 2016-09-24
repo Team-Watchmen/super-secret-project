@@ -2,14 +2,15 @@ import { MapProvider } from '../maps/create-map.js';
 import { UsersManager } from '../kinvey/users.js';
 import { WeatherProvider } from '../weather/get-weather.js';
 
-import { profileScreen } from '../profile/profileScreen.js';
+import { ProfileScreen } from '../profile/profileScreen.js';
 import { TemplatesProvider } from '../kinvey/templates.js';
 
 const WeatherApp = (() => {
     let users,
         weather,
         maps,
-        templates;
+        templates,
+        profileScreen;
 
     class WeatherApp {
         constructor() {
@@ -17,6 +18,7 @@ const WeatherApp = (() => {
             users = new UsersManager();
             weather = new WeatherProvider();
             templates = new TemplatesProvider();
+            profileScreen = new ProfileScreen();
 
             this.__app__ = this.__initializeSammyApp__();
         }
