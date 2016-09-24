@@ -1,0 +1,17 @@
+<header><h3>TODAY in {{name}}</h3></header>
+<div>data: {{dt}}</div>
+{{#weather}}
+    <div>description: {{this.description}}</div>
+{{/weather}}
+<div>Temperature: {{main.temp}}°C</div>
+<div>Image: <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon"></div>
+
+<article>
+    <div>Pressure: {{main.pressure}} hPa</div>
+    <div>Humidity: {{main.humidity}} %</div>
+    <div>Wind speed: {{wind.speed}} m/s</div>
+</article>
+<aside>
+    <div>Max t: {{main.temp_max}}°C</div>
+    <div>Min t: {{main.temp_min}}°C</div>
+</aside>
