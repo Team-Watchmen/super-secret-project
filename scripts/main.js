@@ -111,7 +111,7 @@ var sammyApp = Sammy("#content", function () {
                 return data;
             })
             .then(function(data){
-                Promise.all([data,templates.get("current")])
+                Promise.all([data,templates.get("current-weather")])
                     .then(function ([data,template]) {
 
                         $("#weather").html(template(data));
