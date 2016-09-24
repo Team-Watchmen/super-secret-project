@@ -1,4 +1,4 @@
-import { encriptor } from './encriptor.js';
+import { Encryptor } from './encriptor.js';
 
 const UsersManager = (function () {
     const AUTH_TOKEN = 'auth-token';
@@ -11,6 +11,7 @@ const UsersManager = (function () {
     const autorizationString = `${APP_ID}:${APP_SECRET}`;
 
     const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+    const encriptor = new Encryptor();
 
     class UsersManager {
         constructor() {
@@ -24,7 +25,7 @@ const UsersManager = (function () {
                     password: CryptoJS.SHA1(user.password).toString()
                 }
 
-                var autorizationHeader = encriptor.encriptToBase64(autorizationString);
+                var autorizationHeader = encriptor.encryptToBase64(autorizationString);
 
                 $.ajax({
                     url: `https://baas.kinvey.com/user/${APP_ID}/`,
@@ -50,7 +51,7 @@ const UsersManager = (function () {
                     password: CryptoJS.SHA1(logUser.password).toString()
                 };
 
-                var autorizationHeader = encriptor.encriptToBase64(autorizationString);
+                var autorizationHeader = encriptor.encryptToBase64(autorizationString);
 
                 $.ajax({
                     url: `https://baas.kinvey.com/user/${APP_ID}/login`,
