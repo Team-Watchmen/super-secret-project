@@ -7,7 +7,8 @@ import {maps} from './maps/create-map.js';
 import {profileScreen} from './profile/profileScreen.js';
 
 var sammyApp = Sammy("#content", function () {
-    var $content = $("#content");
+    var $content = $("#content"),
+        $weatherInfo = $("#weather");
 
     this.get("#/", function () {
         $content.html("GOsho");
@@ -99,16 +100,23 @@ var sammyApp = Sammy("#content", function () {
         }
 
         getWeather.oneDay(route.params.location)
-            .then((data) => {
+            .then(function(data) {
                 maps.initializeMap(
                     data.coord.lat,
                     data.coord.lon,
                     document.getElementById('map-container')
                 );
 
+
                 return data;
             })
-            .then(console.log);
+            .then(function(data){
+                Promise.all([data,templates.get("current")])
+                    .then(function ([data,template]) {
+
+                        $("#weather").html(template(data));
+                    })
+            });
     });
 
     this.get('#/profile/add', function (route) {
