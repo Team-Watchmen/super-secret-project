@@ -99,51 +99,51 @@ var sammyApp = Sammy("#content", function () {
             startProfileScreen();
         }
 
-            //One day get weather map and weather-info done
+        //One day get weather map and weather-info done
 
-    //     getWeather.oneDay(route.params.location)
-    //         .then(function(data) {
-    //             maps.initializeMap(
-    //                 data.coord.lat,
-    //                 data.coord.lon,
-    //                 document.getElementById('map-container')
-    //             );
-    //
-    //
-    //             return data;
-    //         })
-    //         .then(function(data){
-    //             Promise.all([data,templates.get("current-weather")])
-    //                 .then(function ([data,template]) {
-    //
-    //                     $("#weather").html(template(data));
-    //                 })
-    //         });
-    // });
+        //     getWeather.oneDay(route.params.location)
+        //         .then(function(data) {
+        //             maps.initializeMap(
+        //                 data.coord.lat,
+        //                 data.coord.lon,
+        //                 document.getElementById('map-container')
+        //             );
+        //
+        //
+        //             return data;
+        //         })
+        //         .then(function(data){
+        //             Promise.all([data,templates.get("current-weather")])
+        //                 .then(function ([data,template]) {
+        //
+        //                     $("#weather").html(template(data));
+        //                 })
+        //         });
+        // });
 
         // WORKING, COMMENTED JUST FOR NOW
 
-//     getWeather.fiveDay(route.params.location)
-//         .then(function(data) {
-//             maps.initializeMap(
-//                 data.city.coord.lat,
-//                 data.city.coord.lon,
-//                 document.getElementById('map-container')
-//             );
-//
-//
-//             return data;
-//         })
-//         .then(function(data){
-//             Promise.all([data,templates.get("five-day")])
-//                 .then(function ([data,template]) {
-//                      $("#weather").html(template(data));
-//                 })
-//         });
-// });
+        //     getWeather.fiveDay(route.params.location)
+        //         .then(function(data) {
+        //             maps.initializeMap(
+        //                 data.city.coord.lat,
+        //                 data.city.coord.lon,
+        //                 document.getElementById('map-container')
+        //             );
+        //
+        //
+        //             return data;
+        //         })
+        //         .then(function(data){
+        //             Promise.all([data,templates.get("five-day")])
+        //                 .then(function ([data,template]) {
+        //                      $("#weather").html(template(data));
+        //                 })
+        //         });
+        // });
 
         getWeather.fourteenDay(route.params.location)
-            .then(function(data) {
+            .then(function (data) {
                 maps.initializeMap(
                     data.city.coord.lat,
                     data.city.coord.lon,
@@ -153,16 +153,23 @@ var sammyApp = Sammy("#content", function () {
 
                 return data;
             })
-            .then(function(data){
-                Promise.all([data,templates.get("fourteen-day")])
-                    .then(function ([data,template]) {
+            .then(function (data) {
+                Promise.all([data, templates.get("fourteen-day")])
+                    .then(function ([data, template]) {
                         $("#weather").html(template(data));
                     })
             });
     });
 
     this.get('#/profile/add', function (route) {
-        // add new location to user in kinvey
+        const newLocation = $('#input-location').val();
+        if (!newLocation) {
+            return;
+        }
+
+        users.setUserLocations(newLocation);
+        startProfileScreen();
+        window.location = `#/profile/${newLocation}/1`;
     });
 
     function startProfileScreen() {
