@@ -1,4 +1,4 @@
-import {users} from './kinvey/users.js';
+import { UsersManager } from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
 import {WeatherProvider} from './weather/get-weather.js';
@@ -7,6 +7,8 @@ import {MapProvider} from './maps/create-map.js';
 import {profileScreen} from './profile/profileScreen.js';
 
 const sammyApp = (() => {
+    const users = new UsersManager();
+
     var sammyApp = Sammy("#content", function () {
         var $content = $("#content"),
             $weatherInfo = $("#weather");

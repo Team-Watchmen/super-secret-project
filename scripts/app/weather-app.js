@@ -3,7 +3,7 @@ import {MapProvider} from './maps/create-map.js';
 
 const WeatherApp = (() => {
     class WeatherApp {
-        constructor(userManager, weatherProvider, mapsProvider) {
+        constructor(usersManager, weatherProvider, mapsProvider) {
 
         }
     }
