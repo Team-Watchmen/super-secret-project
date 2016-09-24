@@ -2,7 +2,7 @@ import {users} from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
 import {WeatherProvider} from './weather/get-weather.js';
-import {maps} from './maps/create-map.js';
+import {MapProvider} from './maps/create-map.js';
 
 import {profileScreen} from './profile/profileScreen.js';
 
@@ -101,10 +101,11 @@ const sammyApp = (() => {
             }
 
             const weather = new WeatherProvider();
+            const maps = new MapProvider();
 
             //One day get weather map and weather-info done
 
-            //     getWeather.oneDay(route.params.location)
+            //     weather.getForecast(route.params.location, 1)
             //         .then(function(data) {
             //             maps.initializeMap(
             //                 data.coord.lat,
@@ -126,7 +127,7 @@ const sammyApp = (() => {
 
             // WORKING, COMMENTED JUST FOR NOW
 
-            //     getWeather.fiveDay(route.params.location)
+            //     weather.getForecast(route.params.location, 5)
             //         .then(function(data) {
             //             maps.initializeMap(
             //                 data.city.coord.lat,
