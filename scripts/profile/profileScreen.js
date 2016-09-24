@@ -2,16 +2,14 @@ import { TemplatesProvider } from '../kinvey/templates.js';
 import { UsersManager } from '../kinvey/users.js';
 
 const ProfileScreen = (() => {
-    const users = new UsersManager();
-    const templates = new TemplatesProvider();
-
     class ProfileScreen {
         constructor() {
-
+            this.users = new UsersManager();
+            this.templates = new TemplatesProvider();
         }
 
         start(container) {
-            templates.get('profile-screen')
+            this.templates.get('profile-screen')
                 .then((template) => {
                     const html = template(null);
                     $(container).html(html);
@@ -20,8 +18,8 @@ const ProfileScreen = (() => {
 
         displayLocationsListForUser(container) {
             Promise.all([
-                templates.get('location-list-item'),
-                users.getUserLocations()
+                this.templates.get('location-list-item'),
+                this.users.getUserLocations()
             ])
                 .then(([template, locations]) => {
                     const html = template(locations);
