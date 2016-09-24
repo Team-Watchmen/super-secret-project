@@ -121,25 +121,45 @@ var sammyApp = Sammy("#content", function () {
     //         });
     // });
 
+        // WORKING, COMMENTED JUST FOR NOW
 
-    getWeather.fiveDay(route.params.location)
-        .then(function(data) {
-            maps.initializeMap(
-                data.city.coord.lat,
-                data.city.coord.lon,
-                document.getElementById('map-container')
-            );
+//     getWeather.fiveDay(route.params.location)
+//         .then(function(data) {
+//             maps.initializeMap(
+//                 data.city.coord.lat,
+//                 data.city.coord.lon,
+//                 document.getElementById('map-container')
+//             );
+//
+//
+//             return data;
+//         })
+//         .then(function(data){
+//             Promise.all([data,templates.get("five-day")])
+//                 .then(function ([data,template]) {
+//                      $("#weather").html(template(data));
+//                 })
+//         });
+// });
+
+        getWeather.fourteenDay(route.params.location)
+            .then(function(data) {
+                maps.initializeMap(
+                    data.city.coord.lat,
+                    data.city.coord.lon,
+                    document.getElementById('map-container')
+                );
 
 
-            return data;
-        })
-        .then(function(data){
-            Promise.all([data,templates.get("five-day")])
-                .then(function ([data,template]) {
-                     $("#weather").html(template(data));
-                })
-        });
-});
+                return data;
+            })
+            .then(function(data){
+                Promise.all([data,templates.get("fourteen-day")])
+                    .then(function ([data,template]) {
+                        $("#weather").html(template(data));
+                    })
+            });
+    });
 
     this.get('#/profile/add', function (route) {
         // add new location to user in kinvey
