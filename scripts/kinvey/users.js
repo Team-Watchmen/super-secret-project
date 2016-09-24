@@ -1,4 +1,4 @@
-import {encriptor} from './encriptor.js';
+import { encriptor } from './encriptor.js';
 
 const UsersManager = (function () {
     const AUTH_TOKEN = 'auth-token';

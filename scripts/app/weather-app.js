@@ -3,17 +3,20 @@ import { UsersManager } from '../kinvey/users.js';
 import { WeatherProvider } from '../weather/get-weather.js';
 
 import { profileScreen } from '../profile/profileScreen.js';
-import { templates } from '../kinvey/templates.js';
-
+import { TemplatesProvider } from '../kinvey/templates.js';
 
 const WeatherApp = (() => {
-    let users, weather, maps;
+    let users,
+        weather,
+        maps,
+        templates;
 
     class WeatherApp {
         constructor() {
             maps = new MapProvider();
             users = new UsersManager();
             weather = new WeatherProvider();
+            templates = new TemplatesProvider();
 
             this.__app__ = this.__initializeSammyApp__();
         }

@@ -6,8 +6,6 @@ const weatherApp = (() => {
     return app;
 })();
 
-
 $(function () {
     weatherApp.start();
-    // sammyApp.run("#/");
 });

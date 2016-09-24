@@ -1,20 +1,23 @@
-var templates = (function(){
+const TemplatesProvider = (function () {
+    class TemplatesProvider {
+        constructor() {
 
-    function get(name) {
-        var promise = new Promise(function(resolve, reject) {
-            var url = `templates/${name}.handlebars`;
-            $.get(url, function(templateHtml) {
-                var template = Handlebars.compile(templateHtml);
-                resolve(template);
+        }
+
+        get(name) {
+            var promise = new Promise(function (resolve, reject) {
+                var url = `templates/${name}.handlebars`;
+                $.get(url, function (templateHtml) {
+                    var template = Handlebars.compile(templateHtml);
+                    resolve(template);
+                });
             });
-        });
 
-        return promise;
+            return promise;
+        }
     }
 
-    return {
-        get : get
-    };
-}());
+    return TemplatesProvider;
+} ());
 
-export {templates};
+export { TemplatesProvider };
