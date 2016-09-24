@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test --recursive --reporter spec",
+    "start": "http-server && index.html"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,13 @@
   "dependencies": {
     "crypto-js": "^3.1.6",
     "handlebars": "^4.0.5",
+    "http-server": "^0.9.0",
     "sammy": "^0.7.6",
     "systemjs": "^0.19.38",
     "systemjs-plugin-babel": "0.0.15"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
   }
 }
