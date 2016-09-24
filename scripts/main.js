@@ -99,25 +99,47 @@ var sammyApp = Sammy("#content", function () {
             startProfileScreen();
         }
 
-        getWeather.oneDay(route.params.location)
-            .then(function(data) {
-                maps.initializeMap(
-                    data.coord.lat,
-                    data.coord.lon,
-                    document.getElementById('map-container')
-                );
+            //One day get weather map and weather-info done
+
+    //     getWeather.oneDay(route.params.location)
+    //         .then(function(data) {
+    //             maps.initializeMap(
+    //                 data.coord.lat,
+    //                 data.coord.lon,
+    //                 document.getElementById('map-container')
+    //             );
+    //
+    //
+    //             return data;
+    //         })
+    //         .then(function(data){
+    //             Promise.all([data,templates.get("current-weather")])
+    //                 .then(function ([data,template]) {
+    //
+    //                     $("#weather").html(template(data));
+    //                 })
+    //         });
+    // });
 
 
-                return data;
-            })
-            .then(function(data){
-                Promise.all([data,templates.get("current-weather")])
-                    .then(function ([data,template]) {
+    getWeather.fiveDay(route.params.location)
+        .then(function(data) {
+            maps.initializeMap(
+                data.city.coord.lat,
+                data.city.coord.lon,
+                document.getElementById('map-container')
+            );
 
-                        $("#weather").html(template(data));
-                    })
-            });
-    });
+
+            return data;
+        })
+        .then(function(data){
+            Promise.all([data,templates.get("five-day")])
+                .then(function ([data,template]) {
+                     $("#weather").html(template(data));
+                })
+        });
+});
 
     this.get('#/profile/add', function (route) {
         // add new location to user in kinvey
