@@ -3,18 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Workshop: Simple Forum with Sammy.js, jQuery and Handlebars</title>
-    <!--Google API with special key below. Map does not work without this.-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap" async
-        defer></script>
+    <title>Super Secret Project</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <style>
         /* Styles can be moved to the right place, this is just to get the map going. */
         
-        #location-element {
+        #map-container {
             position: absolute;
-            top: 500px;
-            left: 500px;
             height: 300px;
             width: 300px;
         }
@@ -34,14 +29,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-                <a class="navbar-brand" href="#/">Forum</a>
+                <a class="navbar-brand" href="#/">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#/profile">My Profile</a></li>
-                    <li><a href="#/books">Treads</a></li>
                     <li><a href="#/about">About us</a></li>
                 </ul>
 
@@ -56,11 +50,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- map element below -->
-    <div id="location-element"></div>
-
-    <div id="content" class="container-fluid">
-    </div>
+    <div id="content" class="container-fluid"></div>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -71,11 +61,15 @@
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src="./scripts/system-config.js"></script>
     <script>
-    System.import('main');
-    System.import('get-current-weather');
-    System.import('get-five-day-forecast');
-    System.import('get-fourteen-day-forecast');
-</script>
+        System.import('main');
+        // System.import('get-current-weather');
+        // System.import('get-five-day-forecast');
+        // System.import('get-fourteen-day-forecast');
+        function initMap(){}
+    </script>
+    <!--Google API with special key below. Map does not work without this.-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap" async
+        defer></script>
 </body>
 
 </html>

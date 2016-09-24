@@ -1,10 +1,12 @@
-        <div class="row">
+        <div class="row" id="profile-screen">
             <div id="location-list-container" class=" col-md-3">
                 <div class="well row">
                     <div id="add-location" class="row">
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Add</span>
-                            <input type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Location">
+                            <span class="input-group-btn">
+                                <a class="btn btn-success" href="#/profile/add" role="button" type="button">Add</a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -14,7 +16,14 @@
                     </ul>
                 </div>
             </div>
-            <div id="weather" class=" col-md-9">
+            <div id="weather" class=" col-md-6">
                  
+            </div>
+            <div class=" col-md-3">
+                <div class="row">
+                    <div id="map-container">
+
+                    </div>
+                </div>
             </div>
         </div>

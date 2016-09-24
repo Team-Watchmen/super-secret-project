@@ -8,7 +8,6 @@ var users = (function () {
 
     const APP_ID = "kid_rJYhi_p3";
     const APP_SECRET = "5284c0a9f27b4f7cb2c18cf9e11d7b80";
-    // const APP_MASTER = "1914c665b14a46a7ac55268a1fed6ad3";
     const autorizationString = `${APP_ID}:${APP_SECRET}`;
 
     const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
@@ -57,7 +56,6 @@ var users = (function () {
                 data: JSON.stringify(reqUser),
                 contentType: 'application/json',
                 success: function (response) {
-                    console.log(response);
                     localStorage.setItem(AUTH_TOKEN, response._kmd.authtoken);
                     localStorage.setItem(USER_NAME, response.username);
                     localStorage.setItem(USER_ID, response._id);
@@ -102,9 +100,6 @@ var users = (function () {
                     } else {
                         locations = [];
                     }
-
-                    console.log("getUserLocations " + locations);
-
                     localStorage.setItem(USER_FAVOURITE_LOCATIONS, locations);
 
                     resolve(locations);
@@ -118,11 +113,8 @@ var users = (function () {
     var setUserLocations = function (location) {
         var promise = new Promise(function (resolve, reject) {
             var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
-            console.log(locations);
-            
             if (!locations) {
                 locations = "";
-                console.log("NO USER LOCATION");
             }
 
             if (locations.indexOf(location) === -1) {
@@ -175,14 +167,10 @@ var users = (function () {
 
         if (locations) {
             result = locations.split(",");
-            console.log("SPLIT - " + result);
             result.push(location);
-            console.log("AFTER PUSH - " + result);
             result = result.join(",");
-            console.log("AFTER JOIN - " + result);
         } else {
             result = location;
-            console.log("first location " + result);
         }
 
         return result;

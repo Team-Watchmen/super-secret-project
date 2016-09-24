@@ -1,6 +1,8 @@
 import {users} from './kinvey/users.js';
 import {books} from './kinvey/books.js';
 import {templates} from './kinvey/templates.js';
+import {getWeather} from './weather/get-weather.js';
+import {maps} from './maps/create-map.js';
 
 import {profileScreen} from './profile/profileScreen.js';
 
@@ -14,14 +16,14 @@ var sammyApp = Sammy("#content", function () {
             $content.html(loggedUser.username);
 
             users.getUserLocations()
-                        .then(function(response) {
-                            console.log(response);
-                        });
-            
+                .then(function (response) {
+                    console.log(response);
+                });
+
             //Test non-added location
             var locationName = "Gorna Banq";
             users.setUserLocations(locationName)
-                .then(function(response) {
+                .then(function (response) {
                     console.log(response);
                 });
         }
@@ -38,8 +40,6 @@ var sammyApp = Sammy("#content", function () {
                 $content.html(template());
 
                 $("#btn-login").on("click", function () {
-                    console.log("login");
-
                     var logUser = {
                         username: $('#username').val(),
                         password: $('#password').val()
@@ -65,8 +65,6 @@ var sammyApp = Sammy("#content", function () {
                 $content.html(template());
 
                 $("#btn-register").on("click", function () {
-                    console.log("register");
-
                     var newUser = {
                         username: $('#new-username').val(),
                         password: $('#new-username').val()
@@ -84,21 +82,43 @@ var sammyApp = Sammy("#content", function () {
 
     this.get('#/profile', function () {
         // Profile Screen
-            // No locations added version.
-            // Locations List section.
-            // Weather display section.
-            // Add location section
-            profileScreen.start('#content');
-            profileScreen.displayLocationsListForUser('#location-list');
+        // No locations added version.
+        // Locations List section.
+        // Weather display section.
+        // Add location section
+        startProfileScreen();
     });
 
     this.get('#/profile/:location/:duration', function (route) {
         // Display weather location
-            // for params.location
-            // with params.duration
-            console.log(route.params.location);
-            console.log(route.params.duration);
+        // for params.location
+        // with params.duration
+        const profileScreen = $('#profile-screen');
+        if (profileScreen.length === 0) {
+            startProfileScreen();
+        }
+
+        getWeather.oneDay(route.params.location)
+            .then((data) => {
+                maps.initializeMap(
+                    data.coord.lat,
+                    data.coord.lon,
+                    document.getElementById('map-container')
+                );
+
+                return data;
+            })
+            .then(console.log);
     });
+
+    this.get('#/profile/add', function (route) {
+        // add new location to user in kinvey
+    });
+
+    function startProfileScreen() {
+        profileScreen.start('#content');
+        profileScreen.displayLocationsListForUser('#location-list');
+    }
 });
 
 //logout
