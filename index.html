@@ -8,12 +8,9 @@
     <style>
         /* Styles can be moved to the right place, this is just to get the map going. */
         
-        #location-element {
-            position: absolute;
-            top: 500px;
-            left: 500px;
-            height: 300px;
-            width: 300px;
+        #map-container {
+            height: 350px;
+            width: 100%;
         }
     </style>
 </head>
@@ -31,14 +28,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-                <a class="navbar-brand" href="#/">Forum</a>
+                <a class="navbar-brand" href="#/">Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#/profile">My Profile</a></li>
-                    <li><a href="#/books">Treads</a></li>
                     <li><a href="#/about">About us</a></li>
                 </ul>
 
@@ -53,11 +49,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- map element below -->
-    <div id="location-element"></div>
-
-    <div id="content" class="container-fluid">
-    </div>
+    <div id="content" class="container-fluid"></div>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
