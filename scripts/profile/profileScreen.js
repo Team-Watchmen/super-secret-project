@@ -1,7 +1,9 @@
 import { templates } from '../kinvey/templates.js';
-import { users } from '../kinvey/users.js';
+import { UsersManager } from '../kinvey/users.js';
 
 const profileScreen = (() => {
+    const users = new UsersManager();
+
     function start(container) {
         templates.get('profile-screen')
             .then((template) => {

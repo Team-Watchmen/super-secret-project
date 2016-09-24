@@ -23,12 +23,7 @@ const WeatherProvider = (() => {
             }
         }
     }
-
-    // return {
-    //     oneDay: getWeatherOneDay,
-    //     fiveDay: getWeatherFiveDay,
-    //     fourteenDay: getWeatherFourteenDay
-    // };
+    
     return WeatherProvider;
 })();
 
