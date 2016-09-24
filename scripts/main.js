@@ -40,8 +40,6 @@ var sammyApp = Sammy("#content", function () {
                 $content.html(template());
 
                 $("#btn-login").on("click", function () {
-                    console.log("login");
-
                     var logUser = {
                         username: $('#username').val(),
                         password: $('#password').val()
@@ -67,8 +65,6 @@ var sammyApp = Sammy("#content", function () {
                 $content.html(template());
 
                 $("#btn-register").on("click", function () {
-                    console.log("register");
-
                     var newUser = {
                         username: $('#new-username').val(),
                         password: $('#new-username').val()
