@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test --recursive --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,9 @@
     "sammy": "^0.7.6",
     "systemjs": "^0.19.38",
     "systemjs-plugin-babel": "0.0.15"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
   }
 }
