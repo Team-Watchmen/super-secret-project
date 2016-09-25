@@ -5,6 +5,8 @@ import { WeatherProvider } from '../weather/get-weather.js';
 import { ProfileScreen } from '../profile/profileScreen.js';
 import { TemplatesProvider } from '../kinvey/templates.js';
 
+import { geolocation } from '../maps/get-geolocation.js';
+
 const WeatherApp = (() => {
     let users,
         weather,
@@ -34,6 +36,9 @@ const WeatherApp = (() => {
 
                 this.get("#/", function () {
                     $content.html("<p>Route: #/</p><p>Content: TBD</p>");
+                    geolocation.getCurrentGeolocation()
+                        .then(console.log)
+                        .catch(console.log);
                 });
 
                 this.get("#/login", function (context) {

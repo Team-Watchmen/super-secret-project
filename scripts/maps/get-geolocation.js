@@ -12,7 +12,7 @@ const geolocation = (() => {
             .then(data => {
                 const coords = {
                     lat: data.coords.latitude,
-                    lon: data.coords.longitute
+                    lon: data.coords.longitude
                 };
 
                 return coords;
