@@ -24,12 +24,7 @@ const WeatherProvider = (() => {
         }
 
         _oneDay(location) {
-            if (!sessionStorage[location]) {
-                sessionStorage[location] = JSON.stringify({});
-            }
-
-            const cached = JSON.parse(sessionStorage[location]);
-
+            const cached = this._getSessionStorageWeatherDataForLocation(location);            
             if (cached.oneDay) {
                 return new Promise((resolve, reject) => {
                     const toResolve = JSON.parse(cached.oneDay.data);
@@ -47,12 +42,7 @@ const WeatherProvider = (() => {
         }
 
         _fiveDay(location) {
-            if (!sessionStorage[location]) {
-                sessionStorage[location] = JSON.stringify({});
-            }
-
-            const cached = JSON.parse(sessionStorage[location]);
-
+            const cached = this._getSessionStorageWeatherDataForLocation(location);            
             if (cached.fiveDay) {
                 return new Promise((resolve, reject) => {
                     const toResolve = JSON.parse(cached.fiveDay.data);
@@ -70,12 +60,7 @@ const WeatherProvider = (() => {
         }
 
         _fourteenDay(location) {
-            if (!sessionStorage[location]) {
-                sessionStorage[location] = JSON.stringify({});
-            }
-
-            const cached = JSON.parse(sessionStorage[location]);
-
+            const cached = this._getSessionStorageWeatherDataForLocation(location);
             if (cached.fourteenDay) {
                 return new Promise((resolve, reject) => {
                     const toResolve = JSON.parse(cached.fourteenDay.data);
@@ -90,6 +75,15 @@ const WeatherProvider = (() => {
                         return data;
                     });
             }
+        }
+
+        _getSessionStorageWeatherDataForLocation(location) {
+            if (!sessionStorage[location]) {
+                sessionStorage[location] = JSON.stringify({});
+            }
+
+            const cached = JSON.parse(sessionStorage[location]);
+            return cached;
         }
 
         _prepDataForStorage(data) {
