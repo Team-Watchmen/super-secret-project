@@ -3,10 +3,10 @@
  */
 const getWeatherOneDay = function ($cityName) {
     // Current weather data promise function.
-    const functionThatReturnCurrentWeatherData = (success) => {
+    const functionThatReturnCurrentWeatherData = (data) => {
         return new Promise((resolve, reject) => {
-            if (success) {
-                resolve(success);
+            if (data) {
+                resolve(data);
             }
             else {
                 reject('failed');
