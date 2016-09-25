@@ -33,23 +33,7 @@ const WeatherApp = (() => {
                     $weatherInfo = $("#weather");
 
                 this.get("#/", function () {
-                    $content.html("GOsho");
-                    var loggedUser = users.isUserLogged();
-                    if (loggedUser) {
-                        $content.html(loggedUser.username);
-
-                        users.getUserLocations()
-                            .then(function (response) {
-                                console.log(response);
-                            });
-
-                        //Test non-added location
-                        var locationName = "Gorna Banq";
-                        users.setUserLocations(locationName)
-                            .then(function (response) {
-                                console.log(response);
-                            });
-                    }
+                    $content.html("Route: #/ Content: TBD");
                 });
 
                 this.get("#/login", function (context) {
