@@ -15,6 +15,7 @@ const ProfileScreen = (() => {
                     $(container).html(html);
                 });
         }
+        
         displayLocationsListForUser(container) {
             Promise.all([
                 this.templates.get('location-list-item'),

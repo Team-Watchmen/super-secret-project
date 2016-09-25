@@ -27,11 +27,11 @@ const TemplatesProvider = (function () {
                     window.sessionStorage[name] = html;
                     return html;
                 })
-                .then((html) => {
-                    const compiled = Handlebars.compile(html);
-                    return compiled;
-                });
-        }
+                    .then((html) => {
+                        const compiled = Handlebars.compile(html);
+                        return compiled;
+                    });
+            }
         }
     }
 
