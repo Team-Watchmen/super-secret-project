@@ -19,9 +19,9 @@ const templates = (function () {
                     .done(resolve)
                     .fail(reject);
             })
-                .then((template) => {
-                    window.sessionStorage[name] = template;
-                    return template;
+                .then((html) => {
+                    window.sessionStorage[name] = html;
+                    return html;
                 })
                 .then((html) => {
                     const compiled = Handlebars.compile(html);
