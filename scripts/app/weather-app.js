@@ -33,7 +33,7 @@ const WeatherApp = (() => {
                     $weatherInfo = $("#weather");
 
                 this.get("#/", function () {
-                    $content.html("Route: #/ Content: TBD");
+                    $content.html("<p>Route: #/</p><p>Content: TBD</p>");
                 });
 
                 this.get("#/login", function (context) {
