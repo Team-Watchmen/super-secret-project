@@ -1,39 +1,40 @@
-import { templates } from '../kinvey/templates.js';
+import { TemplatesProvider } from '../kinvey/templates.js';
 import { UsersManager } from '../kinvey/users.js';
 
-const profileScreen = (() => {
-    const users = new UsersManager();
+const ProfileScreen = (() => {
+    class ProfileScreen {
+        constructor() {
+            this.users = new UsersManager();
+            this.templates = new TemplatesProvider();
+        }
 
-    function start(container) {
-        templates.get('profile-screen')
-            .then((template) => {
-                const html = template(null);
-                $(container).html(html);
-            });
-    }
-
-    function displayLocationsListForUser(container) {
-        Promise.all([
-            templates.get('location-list-item'),
-            users.getUserLocations()
-        ])
-            .then(([template, locations]) => {
-                locations = locations.filter(loc => {
-                    return loc.length > 0;
+        start(container) {
+            this.templates.get('profile-screen')
+                .then((template) => {
+                    const html = template(null);
+                    $(container).html(html);
                 });
+        }
+        displayLocationsListForUser(container) {
+            Promise.all([
+                this.templates.get('location-list-item'),
+                this.users.getUserLocations()
+            ])
+                .then(([template, locations]) => {
+                    locations = locations.filter(loc => {
+                        return loc.length > 0;
+                    });
 
-                const html = template(locations);
-                return html;
-            })
-            .then((html) => {
-                $(container).html(html);
-            });
+                    const html = template(locations);
+                    return html;
+                })
+                .then((html) => {
+                    $(container).html(html);
+                });
+        }
     }
 
-    return {
-        start,
-        displayLocationsListForUser
-    };
+    return ProfileScreen;
 })();
 
-export { profileScreen };
+export { ProfileScreen };

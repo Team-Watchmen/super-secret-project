@@ -1,6 +1,11 @@
-const templates = (function () {
-    function get(name) {
-        if (window.sessionStorage[name]) {
+const TemplatesProvider = (function () {
+    class TemplatesProvider {
+        constructor() {
+
+        }
+
+        get(name) {
+            if (window.sessionStorage[name]) {
             return new Promise((resolve, reject) => {
                 const cachedHtml = window.sessionStorage[name];
                 resolve(cachedHtml);
@@ -27,11 +32,10 @@ const templates = (function () {
                     return compiled;
                 });
         }
+        }
     }
 
-    return {
-        get
-    };
+    return TemplatesProvider;
 } ());
 
-export { templates };
+export { TemplatesProvider };
