@@ -117,6 +117,7 @@ const UsersManager = (function () {
         }
 
         setUserLocations(location) {
+            const that = this; 
             var promise = new Promise(function (resolve, reject) {
                 var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
                 if (!locations) {
@@ -125,7 +126,7 @@ const UsersManager = (function () {
 
                 if (locations.indexOf(location) === -1) {
 
-                    locations = addLocation(location, locations);
+                    locations = that. addLocation(location, locations);
 
                     var body = {
                         "favourite-locations": locations
