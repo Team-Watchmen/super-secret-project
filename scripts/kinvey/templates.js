@@ -1,20 +1,38 @@
-var templates = (function(){
+const templates = (function () {
+    const URL_TEMPLATE = `templates/${name}.handlebars`;
 
     function get(name) {
-        var promise = new Promise(function(resolve, reject) {
-            var url = `templates/${name}.handlebars`;
-            $.get(url, function(templateHtml) {
-                var template = Handlebars.compile(templateHtml);
-                resolve(template);
-            });
-        });
-
-        return promise;
+        if (window.sessionStorage[name]) {
+            return new Promise((resolve, reject) => {
+                resolve(window.sessionStorage[name]);
+            })
+                .then((html) => {
+                    const compiled = Handlebars.compile(html);
+                    return compiled;
+                });
+        } else {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `templates/${name}.handlebars`,
+                    method: 'GET'
+                })
+                    .done(resolve)
+                    .fail(reject);
+            })
+                .then((template) => {
+                    window.sessionStorage[name] = template;
+                    return template;
+                })
+                .then((html) => {
+                    const compiled = Handlebars.compile(html);
+                    return compiled;
+                });
+        }
     }
 
     return {
-        get : get
+        get
     };
-}());
+} ());
 
 export {templates};
