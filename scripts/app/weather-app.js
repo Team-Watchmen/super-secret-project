@@ -5,6 +5,8 @@ import { WeatherProvider } from '../weather/get-weather.js';
 import { ProfileScreen } from '../profile/profileScreen.js';
 import { TemplatesProvider } from '../kinvey/templates.js';
 
+import { geolocation } from '../maps/get-geolocation.js';
+
 const WeatherApp = (() => {
     let users,
         weather,
@@ -33,23 +35,10 @@ const WeatherApp = (() => {
                     $weatherInfo = $("#weather");
 
                 this.get("#/", function () {
-                    $content.html("GOsho");
-                    var loggedUser = users.isUserLogged();
-                    if (loggedUser) {
-                        $content.html(loggedUser.username);
-
-                        users.getUserLocations()
-                            .then(function (response) {
-                                console.log(response);
-                            });
-
-                        //Test non-added location
-                        var locationName = "Gorna Banq";
-                        users.setUserLocations(locationName)
-                            .then(function (response) {
-                                console.log(response);
-                            });
-                    }
+                    $content.html("<p>Route: #/</p><p>Content: TBD</p>");
+                    geolocation.getCurrentGeolocation()
+                        .then(console.log)
+                        .catch(console.log);
                 });
 
                 this.get("#/login", function (context) {
