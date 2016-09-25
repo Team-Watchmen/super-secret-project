@@ -104,11 +104,6 @@ const WeatherApp = (() => {
 
 
                 this.get('#/profile', function () {
-                    // Profile Screen
-                    // No locations added version.
-                    // Locations List section.
-                    // Weather display section.
-                    // Add location section
                     startProfileScreen();
                 });
 
@@ -121,8 +116,12 @@ const WeatherApp = (() => {
                         startProfileScreen();
                     }
 
-                    let templateName = 'current-weather';
-                    const duration = Number(route.params.duration);
+                    let templateName;
+                    let duration = Number(route.params.duration);
+                    if (isNaN(duration)) {
+                        duration = 14;
+                    }
+
                     switch (duration) {
                         case 1:
                             templateName = 'current-weather';
