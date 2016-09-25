@@ -121,6 +121,25 @@ const WeatherApp = (() => {
                         startProfileScreen();
                     }
 
+                    // Different Template,
+                    // There should be a different route for each forecast
+                    // Promise.all([
+                    //     weather.getForecast(route.params.location, 1),
+                    //     templates.get("current-weather")
+                    // ])
+                    //     .then(([data, template]) => {
+                    //         const generatedHtml = template(data);
+                    //         $("#weather").html(generatedHtml);
+                    //         return data;
+                    //     })
+                    //     .then(data => {
+                    //         maps.initializeMap(
+                    //             data.city.coord.lat,
+                    //             data.city.coord.lon,
+                    //             document.getElementById('map-container')
+                    //         );
+                    //     });
+
                     Promise.all([
                         weather.getForecast(route.params.location, 14),
                         templates.get("fourteen-day")
@@ -136,7 +155,8 @@ const WeatherApp = (() => {
                                 data.city.coord.lon,
                                 document.getElementById('map-container')
                             );
-                        });
+                        })
+                        .catch(console.log);
                 });
 
                 this.get('#/profile/add', function (route) {

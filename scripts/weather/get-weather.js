@@ -14,7 +14,7 @@ const WeatherProvider = (() => {
                     return this._fourteenDay(location);
                 default:
                     return new Promise((resolve, reject) => {
-                        resolve('Invalid input');
+                        reject('Invalid input');
                     });
             }
         }
