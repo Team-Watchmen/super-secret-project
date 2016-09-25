@@ -15,13 +15,16 @@ const ProfileScreen = (() => {
                     $(container).html(html);
                 });
         }
-
         displayLocationsListForUser(container) {
             Promise.all([
                 this.templates.get('location-list-item'),
                 this.users.getUserLocations()
             ])
                 .then(([template, locations]) => {
+                    locations = locations.filter(loc => {
+                        return loc.length > 0;
+                    });
+
                     const html = template(locations);
                     return html;
                 })

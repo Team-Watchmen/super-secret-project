@@ -1,6 +1,6 @@
 import { WeatherApp } from './app/weather-app.js';
 
-const weatherApp = (() => {
+const weatherApp = (() => {   
     const app = new WeatherApp();
 
     return app;
