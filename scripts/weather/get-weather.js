@@ -4,10 +4,6 @@ import {getWeatherFourteenDay} from './get-fourteen-day-weather-for-location.js'
 
 const WeatherProvider = (() => {
     class WeatherProvider {
-        constructor() {
-
-        }
-
         getForecast(location, duration) {
             switch (duration) {
                 case 1:
