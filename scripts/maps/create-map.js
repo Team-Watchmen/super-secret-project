@@ -15,7 +15,7 @@ const MapProvider = (() => {
             // Create map with center and type
             const mapProp = {
                 center: myCenter,
-                zoom: 12,
+                zoom: 9,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 

@@ -121,65 +121,21 @@ const WeatherApp = (() => {
                         startProfileScreen();
                     }
 
-                    //One day get weather map and weather-info done
-
-                    //     weather.getForecast(route.params.location, 1)
-                    //         .then(function(data) {
-                    //             users.initializeMap(
-                    //                 data.coord.lat,
-                    //                 data.coord.lon,
-                    //                 document.getElementById('map-container')
-                    //             );
-                    //
-                    //
-                    //             return data;
-                    //         })
-                    //         .then(function(data){
-                    //             Promise.all([data,templates.get("current-weather")])
-                    //                 .then(function ([data,template]) {
-                    //
-                    //                     $("#weather").html(template(data));
-                    //                 })
-                    //         });
-                    // });
-
-                    // WORKING, COMMENTED JUST FOR NOW
-
-                    //     weather.getForecast(route.params.location, 5)
-                    //         .then(function(data) {
-                    //             users.initializeMap(
-                    //                 data.city.coord.lat,
-                    //                 data.city.coord.lon,
-                    //                 document.getElementById('map-container')
-                    //             );
-                    //
-                    //
-                    //             return data;
-                    //         })
-                    //         .then(function(data){
-                    //             Promise.all([data,templates.get("five-day")])
-                    //                 .then(function ([data,template]) {
-                    //                      $("#weather").html(template(data));
-                    //                 })
-                    //         });
-                    // });
-
-                    weather.getForecast(route.params.location, 14)
-                        .then(function (data) {
+                    Promise.all([
+                        weather.getForecast(route.params.location, 14),
+                        templates.get("fourteen-day")
+                    ])
+                        .then(([data, template]) => {
+                            const generatedHtml = template(data);
+                            $("#weather").html(generatedHtml);
+                            return data;
+                        })
+                        .then(data => {
                             maps.initializeMap(
                                 data.city.coord.lat,
                                 data.city.coord.lon,
                                 document.getElementById('map-container')
                             );
-
-
-                            return data;
-                        })
-                        .then(function (data) {
-                            Promise.all([data, templates.get("fourteen-day")])
-                                .then(function ([data, template]) {
-                                    $("#weather").html(template(data));
-                                })
                         });
                 });
 
