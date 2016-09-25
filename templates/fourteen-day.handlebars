@@ -1,6 +1,9 @@
-<ul>
-    {{#each list}}
-        <li>
+<ul class="list-group">
+     {{#each list}}
+        <li class="panel panel-default list-group-item">
+            <div>
+                <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon">
+            </div>
             <div>
                 {{dt}}
             </div>
@@ -10,10 +13,6 @@
 
             <div>
                 {{temp.day}}°C
-            </div>
-            <div>
-                <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon"
-                >
             </div>
 
             <article>
