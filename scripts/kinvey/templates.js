@@ -1,13 +1,12 @@
 const templates = (function () {
-    const URL_TEMPLATE = `templates/${name}.handlebars`;
-
     function get(name) {
         if (window.sessionStorage[name]) {
             return new Promise((resolve, reject) => {
-                resolve(window.sessionStorage[name]);
+                const cachedHtml = window.sessionStorage[name];
+                resolve(cachedHtml);
             })
-                .then((html) => {
-                    const compiled = Handlebars.compile(html);
+                .then((cachedHtml) => {
+                    const compiled = Handlebars.compile(cachedHtml);
                     return compiled;
                 });
         } else {
@@ -35,4 +34,4 @@ const templates = (function () {
     };
 } ());
 
-export {templates};
+export { templates };

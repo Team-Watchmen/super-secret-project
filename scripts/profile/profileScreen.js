@@ -18,6 +18,10 @@ const profileScreen = (() => {
             users.getUserLocations()
         ])
             .then(([template, locations]) => {
+                locations = locations.filter(loc => {
+                    return loc.length > 0;
+                });
+
                 const html = template(locations);
                 return html;
             })
