@@ -121,28 +121,25 @@ const WeatherApp = (() => {
                         startProfileScreen();
                     }
 
-                    // Different Template,
-                    // There should be a different route for each forecast
-                    // Promise.all([
-                    //     weather.getForecast(route.params.location, 1),
-                    //     templates.get("current-weather")
-                    // ])
-                    //     .then(([data, template]) => {
-                    //         const generatedHtml = template(data);
-                    //         $("#weather").html(generatedHtml);
-                    //         return data;
-                    //     })
-                    //     .then(data => {
-                    //         maps.initializeMap(
-                    //             data.city.coord.lat,
-                    //             data.city.coord.lon,
-                    //             document.getElementById('map-container')
-                    //         );
-                    //     });
+                    let templateName = 'current-weather';
+                    const duration = Number(route.params.duration);
+                    switch (duration) {
+                        case 1:
+                            templateName = 'current-weather';
+                            break;
+                        case 5:
+                            templateName = 'five-day';
+                            break;
+                        case 14:
+                            templateName = 'fourteen-day';
+                            break;
+                        default:
+                            return;
+                    }
 
                     Promise.all([
-                        weather.getForecast(route.params.location, 14),
-                        templates.get("fourteen-day")
+                        weather.getForecast(route.params.location, duration),
+                        templates.get(templateName)
                     ])
                         .then(([data, template]) => {
                             const generatedHtml = template(data);
