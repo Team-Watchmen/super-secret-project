@@ -9,17 +9,15 @@
                    <h3> {{temp.day}}°C </h3>
                 </div>
                 <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">Date: {{dt}}</div>
+                        <div class="col-md-6">
+                            Wind: <span>{{speed}}</span> m/s
+                        </div>
+                    </div>
                 <div class="row">
                 <div class="col-md-6">Max: <span>{{temp.max}}</span>°C</div>
                 <div class="col-md-6">Min: <span>{{temp.min}}</span>°C</div>
-                </div>
-                <div class="row">                
-                <div class="col-md-6">
-                    Humidity: {{humidity}} %
-                    </div>
-                    <div class="col-md-6">
-                        Wind: <span>{{speed}}</span> m/s
-                    </div>
                 </div>
                     <div class="row">
                         <div class="col-md-6">

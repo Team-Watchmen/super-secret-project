@@ -1,6 +1,11 @@
 {
   "name": "super-secret-project",
   "version": "1.0.0",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -26,7 +31,9 @@
     "systemjs-plugin-babel": "0.0.15"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
     "chai": "^3.5.0",
+    "cli": "^1.0.0",
     "mocha": "^3.0.2"
   }
 }
