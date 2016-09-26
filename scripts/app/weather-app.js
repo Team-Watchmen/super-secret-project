@@ -15,13 +15,14 @@ const WeatherApp = (() => {
         profileScreen;
 
     class WeatherApp {
-        constructor() {
+        constructor(contentContainerId) {
             maps = new MapProvider();
             users = new UsersManager();
             weather = new WeatherProvider();
             templates = new TemplatesProvider();
             profileScreen = new ProfileScreen();
 
+            this._contentContainer = $(contentContainerId);
             this.__app__ = this.__initializeSammyApp__();
         }
 
