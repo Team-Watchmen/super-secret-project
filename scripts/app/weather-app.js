@@ -97,7 +97,6 @@ const WeatherApp = (() => {
 
                 this.get('#/profile', function () {
                     startProfileScreen();
-                    FB.XFBML.parse(document.getElementById('content'));
                 });
 
                 this.get('#/profile/:location/:duration', function (route) {
