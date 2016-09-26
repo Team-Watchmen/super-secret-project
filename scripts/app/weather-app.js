@@ -15,13 +15,14 @@ const WeatherApp = (() => {
         profileScreen;
 
     class WeatherApp {
-        constructor() {
+        constructor(contentContainerId) {
             maps = new MapProvider();
             users = new UsersManager();
             weather = new WeatherProvider();
             templates = new TemplatesProvider();
             profileScreen = new ProfileScreen();
 
+            this._contentContainer = $(contentContainerId);
             this.__app__ = this.__initializeSammyApp__();
         }
 
@@ -30,6 +31,8 @@ const WeatherApp = (() => {
         }
 
         __initializeSammyApp__() {
+            const that = this;
+
             var sammyApp = Sammy("#content", function () {
                 var $content = $("#content"),
                     $weatherInfo = $("#weather");
@@ -131,17 +134,48 @@ const WeatherApp = (() => {
                     ])
                         .then(([data, template]) => {
                             const generatedHtml = template(data);
-                            $("#weather").html(generatedHtml);
+                            $("#weather-tiles").html(generatedHtml);
                             return data;
                         })
                         .then(data => {
+                            const idSelector = document.getElementById('map-container');
+                            idSelector.style.height = (window.innerHeight - 75) + 'px';
+                            idSelector.style.width = '100%';
+
                             maps.initializeMap(
                                 data.city.coord.lat,
                                 data.city.coord.lon,
-                                document.getElementById('map-container')
+                                idSelector
                             );
                         })
+                        .then(() => {
+                            const cityName = extractCityNameFromCurrentWindowLocation();
+
+                            const container = $(that._contentContainer);
+                            container
+                                .find('#one-day-forecast')
+                                .attr('href', `#/profile/${cityName}/1`);
+
+                            container
+                                .find('#five-day-forecast')
+                                .attr('href', `#/profile/${cityName}/5`);
+
+                            container
+                                .find('#fourteen-day-forecast')
+                                .attr('href', `#/profile/${cityName}/14`);
+
+                            console.log(cityName);
+                        })
                         .catch(console.log);
+
+                    function extractCityNameFromCurrentWindowLocation() {
+                        const windowLocation = String(window.location);
+                        const locationElements = windowLocation.split('/');
+                        const numberOfElements = locationElements.length;
+                        const cityName = locationElements[numberOfElements - 2];
+
+                        return cityName;
+                    }
                 });
 
                 this.get('#/profile/add', function (route) {

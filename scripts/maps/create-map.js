@@ -10,9 +10,6 @@ const MapProvider = (() => {
                 idSelector = document.getElementById(idSelector);
             }
 
-            idSelector.style.height = (window.innerHeight - 75) + 'px';
-            idSelector.style.width = '100%';
-
             const myCenter = new google.maps.LatLng(latitude, longitude);
 
             // Create map with center and type
