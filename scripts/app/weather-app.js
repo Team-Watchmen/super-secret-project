@@ -97,6 +97,7 @@ const WeatherApp = (() => {
 
                 this.get('#/profile', function () {
                     startProfileScreen();
+                    FB.XFBML.parse(document.getElementById('content'));
                 });
 
                 this.get('#/profile/:location/:duration', function (route) {
@@ -107,7 +108,7 @@ const WeatherApp = (() => {
                     if (profileScreen.length === 0) {
                         startProfileScreen();
                     }
-                    
+
                     let templateName;
                     let duration = Number(route.params.duration);
                     if (isNaN(duration)) {
