@@ -31,6 +31,8 @@ const WeatherApp = (() => {
         }
 
         __initializeSammyApp__() {
+            const that = this;
+
             var sammyApp = Sammy("#content", function () {
                 var $content = $("#content"),
                     $weatherInfo = $("#weather");
@@ -146,7 +148,34 @@ const WeatherApp = (() => {
                                 idSelector
                             );
                         })
+                        .then(() => {
+                            const cityName = extractCityNameFromCurrentWindowLocation();
+
+                            const container = $(that._contentContainer);
+                            container
+                                .find('#one-day-forecast')
+                                .attr('href', `#/profile/${cityName}/1`);
+
+                            container
+                                .find('#five-day-forecast')
+                                .attr('href', `#/profile/${cityName}/5`);
+
+                            container
+                                .find('#fourteen-day-forecast')
+                                .attr('href', `#/profile/${cityName}/14`);
+
+                            console.log(cityName);
+                        })
                         .catch(console.log);
+
+                    function extractCityNameFromCurrentWindowLocation() {
+                        const windowLocation = String(window.location);
+                        const locationElements = windowLocation.split('/');
+                        const numberOfElements = locationElements.length;
+                        const cityName = locationElements[numberOfElements - 2];
+
+                        return cityName;
+                    }
                 });
 
                 this.get('#/profile/add', function (route) {
