@@ -1,29 +1,28 @@
 <ul class="list-group">
-     {{#each list}}
+    {{#each list}}
         <li class="panel panel-default list-group-item">
             <div class="row">
                 <div class="col-md-2">
-                    <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon">
+                    <img src="{{displayWeatherIcon weather.0.icon}}" alt="weather-icon">
+                    <!--<img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon">-->
                 </div>
                 <div class="col-md-2">
-                   <h3> {{temp.day}}°C </h3>
+                    <h3> {{numberToOneDigitDisplayFix temp.day}}°C </h3>
                 </div>
                 <div class="col-md-8">
-                <div class="row">
-                <div class="col-md-6">Max: <span>{{temp.max}}</span>°C</div>
-                <div class="col-md-6">Min: <span>{{temp.min}}</span>°C</div>
-                </div>
-                <div class="row">                
-                <div class="col-md-6">
-                    Humidity: {{humidity}} %
+                    <div class="row">
+                        <div class="col-md-6">Date: {{dateDisplayFix dt}}</div>
+                        <div class="col-md-6">
+                            Wind: <span>{{numberToOneDigitDisplayFix speed}}</span> m/s
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        Wind: <span>{{speed}}</span> m/s
+                    <div class="row">
+                        <div class="col-md-6">Max: <span>{{numberToOneDigitDisplayFix temp.max}}</span>°C</div>
+                        <div class="col-md-6">Min: <span>{{numberToOneDigitDisplayFix temp.min}}</span>°C</div>
                     </div>
-                </div>
                     <div class="row">
                         <div class="col-md-6">
-                            Pressure: <span>{{pressure}}</span> hPA
+                            Pressure: <span>{{numberToOneDigitDisplayFix pressure}}</span> hPA
                         </div>
                         <div class="col-md-6">
                             Humidity: {{humidity}} %
@@ -34,6 +33,44 @@
         </li>
     {{/each}}
 </ul>
+
+
+<!--<ul class="list-group">-->
+        <!--{{#each list}}-->
+<!--<li class="panel panel-default list-group-item">-->
+<!--<div class="row">-->
+<!--<div class="col-md-2">-->
+<!--<img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon">-->
+<!--</div>-->
+<!--<div class="col-md-2">-->
+<!--<h3> {{temp.day}}°C </h3>-->
+<!--</div>-->
+<!--<div class="col-md-8">-->
+<!--<div class="row">-->
+<!--<div class="col-md-6">Max: <span>{{temp.max}}</span>°C</div>-->
+<!--<div class="col-md-6">Min: <span>{{temp.min}}</span>°C</div>-->
+<!--</div>-->
+<!--<div class="row">                -->
+<!--<div class="col-md-6">-->
+<!--Humidity: {{humidity}} %-->
+<!--</div>-->
+<!--<div class="col-md-6">-->
+<!--Wind: <span>{{speed}}</span> m/s-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-md-6">-->
+<!--Pressure: <span>{{pressure}}</span> hPA-->
+<!--</div>-->
+<!--<div class="col-md-6">-->
+<!--Humidity: {{humidity}} %-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</li>-->
+        <!--{{/each}}-->
+<!--</ul>-->
 
 <!--<ul>
     {{#each list}}

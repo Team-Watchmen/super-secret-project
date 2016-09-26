@@ -8,7 +8,7 @@ Handlebars.registerHelper("numberToOneDigitDisplayFix", function (numberToBeFixe
     return Number(numberToBeFixed).toFixed(1)
 });
 
-// Could be use and could not be used. Up to us.
+// Could be used and could not be used. the big Q! Up to us.
 Handlebars.registerHelper("displayWeatherIcon", function (iconNumber) {
 
     return ("http://openweathermap.org/img/w/" + iconNumber + ".png")
