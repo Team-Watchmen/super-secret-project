@@ -163,8 +163,6 @@ const WeatherApp = (() => {
                             container
                                 .find('#fourteen-day-forecast')
                                 .attr('href', `#/profile/${cityName}/14`);
-
-                            console.log(cityName);
                         })
                         .catch(console.log);
 
