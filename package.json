@@ -24,7 +24,8 @@
     "http-server": "^0.9.0",
     "sammy": "^0.7.6",
     "systemjs": "^0.19.38",
-    "systemjs-plugin-babel": "0.0.15"
+    "systemjs-plugin-babel": "0.0.15",
+    "bower": "1.7.9"
   },
   "devDependencies": {
     "chai": "^3.5.0",
