@@ -131,14 +131,18 @@ const WeatherApp = (() => {
                     ])
                         .then(([data, template]) => {
                             const generatedHtml = template(data);
-                            $("#weather").append(generatedHtml);
+                            $("#weather-tiles").html(generatedHtml);
                             return data;
                         })
                         .then(data => {
+                            const idSelector = document.getElementById('map-container');
+                            idSelector.style.height = (window.innerHeight - 75) + 'px';
+                            idSelector.style.width = '100%';
+
                             maps.initializeMap(
                                 data.city.coord.lat,
                                 data.city.coord.lon,
-                                document.getElementById('map-container')
+                                idSelector
                             );
                         })
                         .catch(console.log);
