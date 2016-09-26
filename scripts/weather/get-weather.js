@@ -27,7 +27,7 @@ const WeatherProvider = (() => {
                     resolve(toResolve);
                 });
             } else {
-                return getWeatherFourteenDay(location)
+                return getWeatherOneDay(location)
                     .then(data => {
                         const oneDayForecast = this._prepDataForStorage(data);
                         cached.oneDay = oneDayForecast;

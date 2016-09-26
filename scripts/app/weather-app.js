@@ -107,7 +107,7 @@ const WeatherApp = (() => {
                     if (profileScreen.length === 0) {
                         startProfileScreen();
                     }
-
+                    
                     let templateName;
                     let duration = Number(route.params.duration);
                     if (isNaN(duration)) {
@@ -133,6 +133,8 @@ const WeatherApp = (() => {
                         templates.get(templateName)
                     ])
                         .then(([data, template]) => {
+                            console.log(data);
+                            console.log(template);
                             const generatedHtml = template(data);
                             $("#weather-tiles").html(generatedHtml);
                             return data;
