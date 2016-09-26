@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha test --recursive --reporter spec",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "start": "http-server"
   },
   "repository": {
     "type": "git",
