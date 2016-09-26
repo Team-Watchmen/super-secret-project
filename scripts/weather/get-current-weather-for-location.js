@@ -1,18 +1,12 @@
 /**
  * Created by deyanaleksandrov on 9/23/16.
  */
-const getWeatherOneDay = function ($cityName, locationElement) {
-
-    // I put a string just for practice, it can work with click event function or input event function, whatever we decide.
-    // let $cityName = 'Tokyo',
-    //     locationElement = document.getElementById("location-element");
-    locationElement = locationElement || document.getElementById("location-element");
-
+const getWeatherOneDay = function ($cityName) {
     // Current weather data promise function.
-    const functionThatReturnCurrentWeatherData = (success) => {
+    const functionThatReturnCurrentWeatherData = (data) => {
         return new Promise((resolve, reject) => {
-            if (success) {
-                resolve(success);
+            if (data) {
+                resolve(data);
             }
             else {
                 reject('failed');

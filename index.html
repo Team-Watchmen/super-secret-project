@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Super Secret Project</title>
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <style>
-        /* Styles can be moved to the right place, this is just to get the map going. */
-        
-        #map-container {
-            position: absolute;
-            height: 300px;
-            width: 300px;
-        }
-    </style>
+
+    <meta property="og:url"           content="http://team-watchmen.herokuapp.com/" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Team Watchmen Weather App" />
+	<meta property="og:description"   content="Get the latest weather forecast" />
+	<meta property="og:image"         content="" />
 </head>
 
 <body>
@@ -60,11 +58,9 @@
 
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src="./scripts/system-config.js"></script>
+    <script src="scripts/handlebars-helpers/helpers.js"></script>
     <script>
         System.import('main');
-        // System.import('get-current-weather');
-        // System.import('get-five-day-forecast');
-        // System.import('get-fourteen-day-forecast');
         function initMap(){}
     </script>
     <!--Google API with special key below. Map does not work without this.-->

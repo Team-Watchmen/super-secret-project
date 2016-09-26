@@ -1,32 +1,36 @@
-const maps = (() => {
-    // To initialize the map, we need to refer to google maps API in index.html.
-    function initializeMap(latitude, longitude, idSelector) {
-        if (!(idSelector instanceof HTMLElement)) {
-            idSelector = document.getElementById(idSelector);
+const MapProvider = (() => {
+    class MapProvider {
+        constructor() {
+
         }
 
-        const myCenter = new google.maps.LatLng(latitude, longitude);
+        // To initialize the map, we need to refer to google maps API in index.html.
+        initializeMap(latitude, longitude, idSelector) {
+            if (!(idSelector instanceof HTMLElement)) {
+                idSelector = document.getElementById(idSelector);
+            }
 
-        // Create map with center and type
-        const mapProp = {
-            center: myCenter,
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+            const myCenter = new google.maps.LatLng(latitude, longitude);
 
-        // Attach it to selector.
-        const map = new google.maps.Map((idSelector), mapProp);
+            // Create map with center and type
+            const mapProp = {
+                center: myCenter,
+                zoom: 9,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
 
-        // Get little red marker in map center.
-        new google.maps.Marker({
-            position: myCenter,
-            map: map
-        });
+            // Attach it to selector.
+            const map = new google.maps.Map((idSelector), mapProp);
+
+            // Get little red marker in map center.
+            new google.maps.Marker({
+                position: myCenter,
+                map: map
+            });
+        }
     }
 
-    return {
-        initializeMap
-    };
+    return MapProvider;
 })();
 
-export { maps };
+export { MapProvider };

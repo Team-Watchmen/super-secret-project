@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test --recursive --reporter spec",
+    "postinstall": "bower install",
+    "start": "http-server"
   },
   "repository": {
     "type": "git",
@@ -16,11 +18,21 @@
     "url": "https://github.com/Team-Watchmen/super-secret-project/issues"
   },
   "homepage": "https://github.com/Team-Watchmen/super-secret-project#readme",
+  "engines": {
+    "node": "6.2.1",
+    "npm": "3.9.3"
+  },
   "dependencies": {
     "crypto-js": "^3.1.6",
     "handlebars": "^4.0.5",
+    "http-server": "^0.9.0",
     "sammy": "^0.7.6",
     "systemjs": "^0.19.38",
-    "systemjs-plugin-babel": "0.0.15"
+    "systemjs-plugin-babel": "0.0.15",
+    "bower": "1.7.9"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
   }
 }
