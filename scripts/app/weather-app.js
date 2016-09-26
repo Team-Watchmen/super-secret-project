@@ -131,7 +131,7 @@ const WeatherApp = (() => {
                     ])
                         .then(([data, template]) => {
                             const generatedHtml = template(data);
-                            $("#weather").html(generatedHtml);
+                            $("#weather").append(generatedHtml);
                             return data;
                         })
                         .then(data => {
