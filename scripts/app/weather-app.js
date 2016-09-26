@@ -149,6 +149,7 @@ const WeatherApp = (() => {
                             );
                         })
                         .then(() => {
+                            const windowLocation = String(window.location);
                             const cityName = extractCityNameFromCurrentWindowLocation();
 
                             const container = $(that._contentContainer);
@@ -163,6 +164,10 @@ const WeatherApp = (() => {
                             container
                                 .find('#fourteen-day-forecast')
                                 .attr('href', `#/profile/${cityName}/14`);
+
+                            container
+                                .find('#fb-share')
+                                .attr('data-href', windowLocation);
                         })
                         .catch(console.log);
 
