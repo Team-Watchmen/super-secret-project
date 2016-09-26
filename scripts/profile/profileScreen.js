@@ -13,7 +13,8 @@ const ProfileScreen = (() => {
                 .then((template) => {
                     const html = template(null);
                     $(container).html(html);
-                });
+                })
+                .then(() => FB.XFBML.parse());
         }
 
         displayLocationsListForUser(container) {
