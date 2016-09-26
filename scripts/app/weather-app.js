@@ -97,6 +97,7 @@ const WeatherApp = (() => {
 
                 this.get('#/profile', function () {
                     startProfileScreen();
+                    FB.XFBML.parse(document.getElementById('content'));
                 });
 
                 this.get('#/profile/:location/:duration', function (route) {
@@ -133,6 +134,8 @@ const WeatherApp = (() => {
                         templates.get(templateName)
                     ])
                         .then(([data, template]) => {
+                            console.log(data);
+                            console.log(template);
                             const generatedHtml = template(data);
                             $("#weather-tiles").html(generatedHtml);
                             return data;
