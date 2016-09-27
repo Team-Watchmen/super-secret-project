@@ -14,8 +14,14 @@
         </header>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-3">
+                    <h3>{{numberToOneDigitDisplayFix main.temp_min}}°C</h3>
+                </div>
+                <div class="col-md-6">
                     <h1>{{numberToOneDigitDisplayFix main.temp}}°C</h1> 
+                </div>
+                <div class="col-md-3">
+                    <h3>{{numberToOneDigitDisplayFix main.temp_max}}°C</h3>
                 </div>
             </div>
             <div class="row"> 
@@ -30,13 +36,9 @@
             </div>
         </div>
         
-        <article>
+        <article class="panel-footer">
             <div>Pressure: {{numberToOneDigitDisplayFix main.pressure}} hPa</div>
             <div>Humidity: {{main.humidity}} %</div>
             <div>Wind speed: {{numberToOneDigitDisplayFix wind.speed}} m/s</div>
         </article>
-        <aside>
-            <div>Max t: {{numberToOneDigitDisplayFix main.temp_max}}°C</div>
-            <div>Min t: {{numberToOneDigitDisplayFix main.temp_min}}°C</div>
-        </aside>
     </div>
