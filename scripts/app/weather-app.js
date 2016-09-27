@@ -1,11 +1,11 @@
-import { MapProvider } from '../maps/create-map.js';
-import { UsersManager } from '../kinvey/users.js';
-import { WeatherProvider } from '../weather/get-weather.js';
+import {MapProvider} from '../maps/create-map.js';
+import {UsersManager} from '../kinvey/users.js';
+import {WeatherProvider} from '../weather/get-weather.js';
 
-import { ProfileScreen } from '../profile/profileScreen.js';
-import { TemplatesProvider } from '../kinvey/templates.js';
+import {ProfileScreen} from '../profile/profileScreen.js';
+import {TemplatesProvider} from '../kinvey/templates.js';
 
-import { geolocation } from '../maps/get-geolocation.js';
+import {geolocation} from '../maps/get-geolocation.js';
 
 const WeatherApp = (() => {
     let users,
@@ -83,13 +83,21 @@ const WeatherApp = (() => {
                                 var newUser = {
                                     username: $('#new-username').val(),
                                     password: $('#new-username').val()
-                                }
+                                };
 
                                 users.register(newUser)
                                     .then(function (response) {
                                         context.redirect('#/');
-                                        document.location.reload(true);
+                                        // Slowing the reload down for the toaster success pop-up..
+                                        setTimeout(function () {
+                                            document.location.reload(true)
+                                        }, 2000);
                                     });
+
+
+                                toastr.success("Congrats on your registration!");
+
+
                             });
                         });
                 });
@@ -214,4 +222,4 @@ const WeatherApp = (() => {
     return WeatherApp;
 })();
 
-export { WeatherApp };
+export {WeatherApp};
