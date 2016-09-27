@@ -123,6 +123,7 @@ const WeatherApp = (() => {
                     switch (duration) {
                         case 1:
                             templateName = 'current-weather';
+
                             break;
                         case 5:
                             templateName = 'five-day';
@@ -136,7 +137,8 @@ const WeatherApp = (() => {
 
                     Promise.all([
                         weather.getForecast(route.params.location, duration),
-                        templates.get(templateName)
+                        templates.get(templateName),
+
                     ])
                         .then(([data, template]) => {
                             const generatedHtml = template(data);
@@ -206,11 +208,18 @@ const WeatherApp = (() => {
 
             //logout
             $("#nav-btn-logout").on("click", function () {
-                users.logout()
-                    .then(function () {
-                        location = "#/";
-                        document.location.reload(true);
-                    });
+                if (users.isUserLogged()) {
+                    users.logout()
+                        .then(function () {
+                            location = "#/";
+                            setTimeout(function () {
+                                document.location.reload(true)
+                            }, 2000);
+                        });
+                    toastr.info("", "You just logged out!", {"positionClass": "toast-bottom-left",});
+                } else {
+                    toastr.info("So, no need to log out :)", "You are not logged in!", {"positionClass": "toast-bottom-left",});
+                }
             });
 
             return sammyApp;
