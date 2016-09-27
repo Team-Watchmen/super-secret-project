@@ -172,7 +172,7 @@ const WeatherApp = (() => {
 
                             container
                                 .find('#twttr-share')
-                                .attr('href', 'https://twitter.com/intent/tweet?text=' + windowLocation);
+                                .attr('href', 'https://twitter.com/intent/tweet?text=' + `Team Watchmen Weather forecast for ${cityName} ` + windowLocation);
                         })
                         .catch(console.log);
 
