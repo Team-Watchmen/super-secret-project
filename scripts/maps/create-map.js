@@ -15,8 +15,8 @@ const MapProvider = (() => {
             // Create map with center and type
             const mapProp = {
                 center: myCenter,
-                zoom: 9,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                zoom: 7,
+                mapTypeId: google.maps.MapTypeId.HYBRID
             };
 
             // Attach it to selector.
