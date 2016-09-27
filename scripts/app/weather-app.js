@@ -44,7 +44,7 @@ const WeatherApp = (() => {
                 this.get("#/login", function (context) {
                     if (users.isUserLogged()) {
                         context.redirect('#/');
-                        toastr.success("", "You logged in already!", {"positionClass": "toast-bottom-left",});
+                        toastr.success("", "You logged in already!", { "positionClass": "toast-bottom-left", });
                         return;
                     }
 
@@ -171,8 +171,8 @@ const WeatherApp = (() => {
                                 .attr('href', `#/profile/${cityName}/14`);
 
                             container
-                                .find('#fb-share')
-                                .attr('data-href', windowLocation);
+                                .find('#twttr-share')
+                                .attr('href', 'https://twitter.com/intent/tweet?text=' + windowLocation);
                         })
                         .catch(console.log);
 
@@ -213,9 +213,9 @@ const WeatherApp = (() => {
                                 document.location.reload(true)
                             }, 2000);
                         });
-                    toastr.info("", "You just logged out!", {"positionClass": "toast-bottom-left",});
+                    toastr.info("", "You just logged out!", { "positionClass": "toast-bottom-left", });
                 } else {
-                    toastr.info("So, no need to log out :)", "You are not logged in!", {"positionClass": "toast-bottom-left",});
+                    toastr.info("So, no need to log out :)", "You are not logged in!", { "positionClass": "toast-bottom-left", });
                 }
             });
 
