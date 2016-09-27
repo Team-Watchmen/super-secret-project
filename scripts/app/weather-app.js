@@ -133,8 +133,6 @@ const WeatherApp = (() => {
                         templates.get(templateName)
                     ])
                         .then(([data, template]) => {
-                            console.log(data);
-                            console.log(template);
                             const generatedHtml = template(data);
                             $("#weather-tiles").html(generatedHtml);
                             return data;
