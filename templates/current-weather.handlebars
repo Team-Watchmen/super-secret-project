@@ -4,7 +4,7 @@
             <div class="row ">
                 <div class="col-md-12">
                     <div class="row">
-                        <h3 class="col-md-12">TODAY in {{this.name}}</h3>
+                        <h1>{{this.name}}</h1>
                     </div>
                     <div class="row">
                         <h4 class="col-md-12">{{dateDisplayFix dt}}</h4>
@@ -29,11 +29,7 @@
                 </div>
             </div>
         </div>
-        <div>data: {{dateDisplayFix dt}}</div>
-        {{#weather}}
-        <div>description: {{this.description}}</div>
-        {{/weather}}
-        <!--<div>Image: <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon"></div>-->
+        
         <article>
             <div>Pressure: {{numberToOneDigitDisplayFix main.pressure}} hPa</div>
             <div>Humidity: {{main.humidity}} %</div>
