@@ -36,9 +36,9 @@
             </div>
         </div>
         
-        <article class="panel-footer">
-            <div>Pressure: {{numberToOneDigitDisplayFix main.pressure}} hPa</div>
-            <div>Humidity: {{main.humidity}} %</div>
-            <div>Wind speed: {{numberToOneDigitDisplayFix wind.speed}} m/s</div>
-        </article>
+        <div class="panel-footer">
+            <h4>Humidity: {{main.humidity}} %</h4>
+            <h4>Wind speed: {{numberToOneDigitDisplayFix wind.speed}} m/s</h4>
+            <h4>Atmospheric pressure: {{numberToOneDigitDisplayFix main.pressure}} hPa</h4>            
+        </div>
     </div>
