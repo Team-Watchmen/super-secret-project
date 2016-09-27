@@ -38,10 +38,7 @@ const WeatherApp = (() => {
                     $weatherInfo = $("#weather");
 
                 this.get("#/", function () {
-                    $content.html("<p>Route: #/</p><p>Content: TBD</p>");
-                    geolocation.getCurrentGeolocation()
-                        .then(console.log)
-                        .catch(console.log);
+                    $content.html("<p class='well'>Route: #/</p><p class='well'>Content: TBD</p>");
                 });
 
                 this.get("#/login", function (context) {
