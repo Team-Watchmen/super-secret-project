@@ -47,6 +47,7 @@ const WeatherApp = (() => {
                 this.get("#/login", function (context) {
                     if (users.isUserLogged()) {
                         context.redirect('#/');
+                        toastr.success("", "You logged in already!", {"positionClass": "toast-bottom-left",});
                         return;
                     }
 
@@ -94,10 +95,7 @@ const WeatherApp = (() => {
                                         }, 2000);
                                     });
 
-
                                 toastr.success("Congrats on your registration!");
-
-
                             });
                         });
                 });
