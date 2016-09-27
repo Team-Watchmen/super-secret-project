@@ -1,15 +1,39 @@
-<div class="container-fluid">
-    <div class="panel panel-default">
+
+    <div class="panel panel-default text-center">
         <header class="panel-heading">
-            <h3>TODAY in {{this.name}}</h3>
-            <h3>Temperature: {{numberToOneDigitDisplayFix main.temp}}°C</h3>            
+            <div class="row ">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h3 class="col-md-12">TODAY in {{this.name}}</h3>
+                    </div>
+                    <div class="row">
+                        <h4 class="col-md-12">{{dateDisplayFix dt}}</h4>
+                    </div>
+                </div>
+            </div>             
         </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{numberToOneDigitDisplayFix main.temp}}°C</h1> 
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="col-md-12">
+                    <div>
+                        <img src="{{displayWeatherIcon weather.0.icon}}" alt="weather-icon">  
+                    </div>
+                    {{#weather}}
+                        <h4 class="col-md-12">{{this.description}}</h4>
+                    {{/weather}}
+                </div>
+            </div>
+        </div>
         <div>data: {{dateDisplayFix dt}}</div>
         {{#weather}}
         <div>description: {{this.description}}</div>
         {{/weather}}
         <!--<div>Image: <img src="http://openweathermap.org/img/w/{{weather.0.icon}}.png" alt="weather-icon"></div>-->
-        <img src="{{displayWeatherIcon weather.0.icon}}" alt="weather-icon">
         <article>
             <div>Pressure: {{numberToOneDigitDisplayFix main.pressure}} hPa</div>
             <div>Humidity: {{main.humidity}} %</div>
@@ -20,4 +44,3 @@
             <div>Min t: {{numberToOneDigitDisplayFix main.temp_min}}°C</div>
         </aside>
     </div>
-</div>
