@@ -1,11 +1,11 @@
-import { MapProvider } from '../maps/create-map.js';
-import { UsersManager } from '../kinvey/users.js';
-import { WeatherProvider } from '../weather/get-weather.js';
+import {MapProvider} from '../maps/create-map.js';
+import {UsersManager} from '../kinvey/users.js';
+import {WeatherProvider} from '../weather/get-weather.js';
 
-import { ProfileScreen } from '../profile/profileScreen.js';
-import { TemplatesProvider } from '../kinvey/templates.js';
+import {ProfileScreen} from '../profile/profileScreen.js';
+import {TemplatesProvider} from '../kinvey/templates.js';
 
-import { geolocation } from '../maps/get-geolocation.js';
+import {geolocation} from '../maps/get-geolocation.js';
 
 const WeatherApp = (() => {
     let users,
@@ -44,6 +44,7 @@ const WeatherApp = (() => {
                 this.get("#/login", function (context) {
                     if (users.isUserLogged()) {
                         context.redirect('#/');
+                        toastr.success("", "You logged in already!", {"positionClass": "toast-bottom-left",});
                         return;
                     }
 
@@ -80,13 +81,18 @@ const WeatherApp = (() => {
                                 var newUser = {
                                     username: $('#new-username').val(),
                                     password: $('#new-username').val()
-                                }
+                                };
 
                                 users.register(newUser)
                                     .then(function (response) {
                                         context.redirect('#/');
-                                        document.location.reload(true);
+                                        // Slowing the reload down for the toaster success pop-up..
+                                        setTimeout(function () {
+                                            document.location.reload(true)
+                                        }, 2000);
                                     });
+
+                                toastr.success("Congrats on your registration!");
                             });
                         });
                 });
@@ -114,6 +120,7 @@ const WeatherApp = (() => {
                     switch (duration) {
                         case 1:
                             templateName = 'current-weather';
+
                             break;
                         case 5:
                             templateName = 'five-day';
@@ -127,7 +134,8 @@ const WeatherApp = (() => {
 
                     Promise.all([
                         weather.getForecast(route.params.location, duration),
-                        templates.get(templateName)
+                        templates.get(templateName),
+
                     ])
                         .then(([data, template]) => {
                             const generatedHtml = template(data);
@@ -197,11 +205,18 @@ const WeatherApp = (() => {
 
             //logout
             $("#nav-btn-logout").on("click", function () {
-                users.logout()
-                    .then(function () {
-                        location = "#/";
-                        document.location.reload(true);
-                    });
+                if (users.isUserLogged()) {
+                    users.logout()
+                        .then(function () {
+                            location = "#/";
+                            setTimeout(function () {
+                                document.location.reload(true)
+                            }, 2000);
+                        });
+                    toastr.info("", "You just logged out!", {"positionClass": "toast-bottom-left",});
+                } else {
+                    toastr.info("So, no need to log out :)", "You are not logged in!", {"positionClass": "toast-bottom-left",});
+                }
             });
 
             return sammyApp;
@@ -211,4 +226,4 @@ const WeatherApp = (() => {
     return WeatherApp;
 })();
 
-export { WeatherApp };
+export {WeatherApp};

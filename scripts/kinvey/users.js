@@ -36,13 +36,16 @@ const UsersManager = (function () {
                     data: JSON.stringify(reqUser),
                     contentType: 'application/json',
                     success: function (response) {
+
                         resolve(response);
+
                     }
                 });
             });
 
             return promise;
         }
+
 
         login(logUser) {
             var promise = new Promise(function (resolve, reject) {
@@ -144,10 +147,12 @@ const UsersManager = (function () {
                             localStorage.setItem(USER_FAVOURITE_LOCATIONS, locations);
 
                             resolve(response);
+                            toastr.success("Cool! You just added a new location ;-)");
+
                         }
                     });
                 } else {
-                    resolve("Location is already added!");
+                    resolve(toastr.info("You already have this location!"));
                 }
 
             });
