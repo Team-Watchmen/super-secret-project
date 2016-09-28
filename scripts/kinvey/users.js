@@ -90,6 +90,7 @@ const UsersManager = (function () {
 
         getUserLocations() {
             const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+
             var promise = new Promise(function (resolve, reject) {
 
                 $.ajax({
@@ -120,6 +121,8 @@ const UsersManager = (function () {
 
         setUserLocations(location) {
             const that = this;
+            const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+            
             var promise = new Promise(function (resolve, reject) {
                 var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
                 if (!locations) {
