@@ -46,7 +46,6 @@ const UsersManager = (function () {
             return promise;
         }
 
-
         login(logUser) {
             const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
 
