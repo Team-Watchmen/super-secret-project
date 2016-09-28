@@ -44,13 +44,7 @@ const WeatherApp = (() => {
                 var $content = $("#content"),
                     $weatherInfo = $("#weather");
 
-                // this.get(/.*/, function () {
-                //     context.redirect('#/');
-                // });
-
                 this.get("#/", function () {
-                    $content.html("<p class='well'>Route: #/</p><p class='well'>Content: TBD</p>");
-
                     Promise.all([
                         templates.get('home-screen'),
                         templates.get('current-weather'),
@@ -169,15 +163,19 @@ const WeatherApp = (() => {
                             return data;
                         })
                         .then(data => {
-                            const idSelector = document.getElementById('map-container');
-                            idSelector.style.height = (window.innerHeight - 75) + 'px';
-                            idSelector.style.width = '100%';
+                            try {
+                                const idSelector = document.getElementById('map-container');
+                                idSelector.style.height = (window.innerHeight - 75) + 'px';
+                                idSelector.style.width = '100%';
 
-                            maps.initializeMap(
-                                data.city.coord.lat,
-                                data.city.coord.lon,
-                                idSelector
-                            );
+                                maps.initializeMap(
+                                    data.city.coord.lat,
+                                    data.city.coord.lon,
+                                    idSelector
+                                );
+                            } catch (error) {
+
+                            }
                         })
                         .then(() => {
                             const windowLocation = String(window.location);
@@ -195,6 +193,11 @@ const WeatherApp = (() => {
                             container
                                 .find('#fourteen-day-forecast')
                                 .attr('href', `#/profile/${cityName}/14`);
+
+                            container
+                                .find('#current-weather')
+                                .addClass('panel-default')                                
+                                .removeClass('panel-primary');
 
                             container
                                 .find('#twttr-share')
