@@ -1,0 +1,11 @@
+body .navbar .navbar-collapse .navbar-right .hidden-when-not-logged-in {
+    display: none;
+}
+
+body.logged-in .navbar .navbar-collapse .navbar-right .visible-when-not-logged-in {
+    display: none;
+}
+
+body.logged-in .navbar .navbar-collapse .navbar-right .hidden-when-not-logged-in {
+    display: initial;
+}
