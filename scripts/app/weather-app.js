@@ -27,6 +27,11 @@ const WeatherApp = (() => {
         }
 
         start() {
+            const isUserLoggedIn = users.isUserLogged();
+            if (isUserLoggedIn) {
+                $(document.body).addClass("logged-in");
+            }
+
             this.__app__.run('#/');
         }
 
