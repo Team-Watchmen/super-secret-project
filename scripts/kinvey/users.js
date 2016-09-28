@@ -10,7 +10,6 @@ const UsersManager = (function () {
     const APP_SECRET = "5284c0a9f27b4f7cb2c18cf9e11d7b80";
     const autorizationString = `${APP_ID}:${APP_SECRET}`;
 
-    // const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
     const encriptor = new Encryptor();
 
     class UsersManager {
@@ -23,7 +22,7 @@ const UsersManager = (function () {
                 var reqUser = {
                     username: user.username,
                     password: CryptoJS.SHA1(user.password).toString()
-                }
+                };
 
                 var autorizationHeader = encriptor.encryptToBase64(autorizationString);
 
@@ -36,9 +35,7 @@ const UsersManager = (function () {
                     data: JSON.stringify(reqUser),
                     contentType: 'application/json',
                     success: function (response) {
-
                         resolve(response);
-
                     }
                 });
             });
@@ -46,10 +43,7 @@ const UsersManager = (function () {
             return promise;
         }
 
-
         login(logUser) {
-            const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
-
             var promise = new Promise(function (resolve, reject) {
                 var reqUser = {
                     username: logUser.username,
@@ -85,7 +79,7 @@ const UsersManager = (function () {
                 localStorage.removeItem(USER_NAME);
                 localStorage.removeItem(USER_ID);
                 localStorage.removeItem(USER_FAVOURITE_LOCATIONS);
-
+                $(document.body).removeClass("logged-in");
                 resolve();
             });
 
@@ -93,6 +87,8 @@ const UsersManager = (function () {
         }
 
         getUserLocations() {
+            const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+
             var promise = new Promise(function (resolve, reject) {
 
                 $.ajax({
@@ -123,6 +119,8 @@ const UsersManager = (function () {
 
         setUserLocations(location) {
             const that = this;
+            const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+            
             var promise = new Promise(function (resolve, reject) {
                 var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
                 if (!locations) {
