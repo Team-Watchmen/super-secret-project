@@ -31,7 +31,7 @@ const WeatherApp = (() => {
             if (isUserLoggedIn) {
                 $(document.body).addClass("logged-in");
             } else {
-                $(document.body).removeClass("logged-in");                
+                $(document.body).removeClass("logged-in");
             }
 
             this.__app__.run('#/');
@@ -45,7 +45,23 @@ const WeatherApp = (() => {
                     $weatherInfo = $("#weather");
 
                 this.get("#/", function () {
-                    $content.html("<p class='well'>Route: #/</p><p class='well'>Content: TBD</p>");
+                    Promise.all([
+                        templates.get('home-screen'),
+                        templates.get('current-weather'),
+                        weather.getForecast('Paris', 1),
+                        weather.getForecast('New York', 1),
+                        weather.getForecast('Tokyo', 1)
+                    ])
+                        .then(([screen, template, paris, ny, tokyo]) => {
+                            const data = {
+                                a: template(paris),
+                                b: template(ny),
+                                c: template(tokyo)
+                            };
+
+                            const html = screen(data);
+                            that._contentContainer.html(html);
+                        });
                 });
 
                 this.get("#/login", function (context) {
@@ -147,15 +163,19 @@ const WeatherApp = (() => {
                             return data;
                         })
                         .then(data => {
-                            const idSelector = document.getElementById('map-container');
-                            idSelector.style.height = (window.innerHeight - 75) + 'px';
-                            idSelector.style.width = '100%';
+                            try {
+                                const idSelector = document.getElementById('map-container');
+                                idSelector.style.height = (window.innerHeight - 75) + 'px';
+                                idSelector.style.width = '100%';
 
-                            maps.initializeMap(
-                                data.city.coord.lat,
-                                data.city.coord.lon,
-                                idSelector
-                            );
+                                maps.initializeMap(
+                                    data.city.coord.lat,
+                                    data.city.coord.lon,
+                                    idSelector
+                                );
+                            } catch (error) {
+
+                            }
                         })
                         .then(() => {
                             const windowLocation = String(window.location);
@@ -175,8 +195,15 @@ const WeatherApp = (() => {
                                 .attr('href', `#/profile/${cityName}/14`);
 
                             container
+                                .find('#current-weather')
+                                .addClass('panel-default')                                
+                                .removeClass('panel-primary');
+
+                            container
                                 .find('#twttr-share')
-                                .attr('href', 'https://twitter.com/intent/tweet?text=' + `Team Watchmen Weather forecast for ${cityName} ` + windowLocation);
+                                .attr('href', 'https://twitter.com/intent/tweet?text=' +
+                                `Team Watchmen Weather forecast for ${cityName} ` +
+                                windowLocation);
                         })
                         .catch(console.log);
 
