@@ -84,7 +84,7 @@ const UsersManager = (function () {
                 localStorage.removeItem(USER_NAME);
                 localStorage.removeItem(USER_ID);
                 localStorage.removeItem(USER_FAVOURITE_LOCATIONS);
-
+                $(document.body).removeClass("logged-in");
                 resolve();
             });
 
@@ -94,7 +94,7 @@ const UsersManager = (function () {
         getUserLocations() {
             const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
             var promise = new Promise(function (resolve, reject) {
-            
+
                 $.ajax({
                     url: `https://baas.kinvey.com/user/${APP_ID}/${localStorage.getItem(USER_ID)}`,
                     method: 'GET',
