@@ -31,7 +31,7 @@ const WeatherApp = (() => {
             if (isUserLoggedIn) {
                 $(document.body).addClass("logged-in");
             } else {
-                $(document.body).removeClass("logged-in");                
+                $(document.body).removeClass("logged-in");
             }
 
             this.__app__.run('#/');
@@ -176,7 +176,9 @@ const WeatherApp = (() => {
 
                             container
                                 .find('#twttr-share')
-                                .attr('href', 'https://twitter.com/intent/tweet?text=' + `Team Watchmen Weather forecast for ${cityName} ` + windowLocation);
+                                .attr('href', 'https://twitter.com/intent/tweet?text=' +
+                                    `Team Watchmen Weather forecast for ${cityName} ` +
+                                    windowLocation);
                         })
                         .catch(console.log);
 
