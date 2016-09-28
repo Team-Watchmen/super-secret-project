@@ -93,8 +93,8 @@ const UsersManager = (function () {
         }
 
         getUserLocations() {
-            var promise = new Promise(function (resolve, reject) {
             const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+            var promise = new Promise(function (resolve, reject) {
             
                 $.ajax({
                     url: `https://baas.kinvey.com/user/${APP_ID}/${localStorage.getItem(USER_ID)}`,

@@ -62,8 +62,7 @@ const WeatherApp = (() => {
                                     .then(function (response) {
                                         $(document.body).addClass("logged-in");
 
-                                        context.redirect('#/');
-                                        // document.location.reload(true);
+                                        context.redirect('#/profile');
                                     });
                             });
                         });
@@ -88,10 +87,6 @@ const WeatherApp = (() => {
                                 users.register(newUser)
                                     .then(function (response) {
                                         context.redirect('#/');
-                                        // Slowing the reload down for the toaster success pop-up..
-                                        // setTimeout(function () {
-                                        //     document.location.reload(true)
-                                        // }, 2000);
                                     });
 
                                 toastr.success("Congrats on your registration!");
@@ -213,9 +208,6 @@ const WeatherApp = (() => {
                             $(document.body).remove("logged-in");
 
                             location = "#/";
-                            // setTimeout(function () {
-                            //     document.location.reload(true)
-                            // }, 2000);
                         });
                     toastr.info("", "You just logged out!", { "positionClass": "toast-bottom-left", });
                 } else {
