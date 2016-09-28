@@ -44,8 +44,30 @@ const WeatherApp = (() => {
                 var $content = $("#content"),
                     $weatherInfo = $("#weather");
 
+                // this.get(/.*/, function () {
+                //     context.redirect('#/');
+                // });
+
                 this.get("#/", function () {
                     $content.html("<p class='well'>Route: #/</p><p class='well'>Content: TBD</p>");
+
+                    Promise.all([
+                        templates.get('home-screen'),
+                        templates.get('current-weather'),
+                        weather.getForecast('Paris', 1),
+                        weather.getForecast('New York', 1),
+                        weather.getForecast('Tokyo', 1)
+                    ])
+                        .then(([screen, template, paris, ny, tokyo]) => {
+                            const data = {
+                                a: template(paris),
+                                b: template(ny),
+                                c: template(tokyo)
+                            };
+
+                            const html = screen(data);
+                            that._contentContainer.html(html);
+                        });
                 });
 
                 this.get("#/login", function (context) {
@@ -177,8 +199,8 @@ const WeatherApp = (() => {
                             container
                                 .find('#twttr-share')
                                 .attr('href', 'https://twitter.com/intent/tweet?text=' +
-                                    `Team Watchmen Weather forecast for ${cityName} ` +
-                                    windowLocation);
+                                `Team Watchmen Weather forecast for ${cityName} ` +
+                                windowLocation);
                         })
                         .catch(console.log);
 
