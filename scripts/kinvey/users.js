@@ -10,7 +10,7 @@ const UsersManager = (function () {
     const APP_SECRET = "5284c0a9f27b4f7cb2c18cf9e11d7b80";
     const autorizationString = `${APP_ID}:${APP_SECRET}`;
 
-    const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+    // const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
     const encriptor = new Encryptor();
 
     class UsersManager {
@@ -48,6 +48,8 @@ const UsersManager = (function () {
 
 
         login(logUser) {
+            const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+
             var promise = new Promise(function (resolve, reject) {
                 var reqUser = {
                     username: logUser.username,
@@ -120,7 +122,7 @@ const UsersManager = (function () {
         }
 
         setUserLocations(location) {
-            const that = this; 
+            const that = this;
             var promise = new Promise(function (resolve, reject) {
                 var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
                 if (!locations) {
@@ -129,10 +131,10 @@ const UsersManager = (function () {
 
                 if (locations.indexOf(location) === -1) {
 
-                    locations = that. addLocation(location, locations);
+                    locations = that.addLocation(location, locations);
 
                     var body = {
-                        [USER_FAVOURITE_LOCATIONS] : locations
+                        [USER_FAVOURITE_LOCATIONS]: locations
                     };
 
                     $.ajax({
