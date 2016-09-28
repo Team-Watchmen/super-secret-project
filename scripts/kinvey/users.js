@@ -132,7 +132,7 @@ const UsersManager = (function () {
                     locations = that. addLocation(location, locations);
 
                     var body = {
-                        "favourite-locations": locations
+                        [USER_FAVOURITE_LOCATIONS] : locations
                     };
 
                     $.ajax({
