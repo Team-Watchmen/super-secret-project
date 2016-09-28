@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/toastr/package/toastr.css">
+    <link rel="stylesheet" href="styles/main.css">
 
     <meta property="og:url" content="http://team-watchmen.herokuapp.com/" />
     <meta property="og:type" content="website" />
@@ -56,14 +57,22 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#/profile">My Profile</a></li>
                     <li><a href="#/about">About us</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="nav-btn-login" href="#/login">Log in</a></li>
-                    <li><a id="nav-btn-register" href="#/register">Register</a></li>
-                    <li><a id="nav-btn-logout" href="#/">Logout</a></li>
+                    <li class="nav-btn-login visible-when-not-logged-in">
+                        <a id="nav-btn-login" href="#/login">Log in</a>
+                    </li>
+                    <li class="nav-btn-register visible-when-not-logged-in">
+                        <a id="nav-btn-register" href="#/register">Register</a>
+                    </li>
+                    <li class="profile hidden-when-not-logged-in">
+                        <a href="#/profile">My Profile</a>
+                    </li>
+                    <li class="nav-btn-logout hidden-when-not-logged-in">
+                        <a id="nav-btn-logout"  href="#/">Logout</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

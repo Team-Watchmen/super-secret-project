@@ -92,7 +92,8 @@ const UsersManager = (function () {
 
         getUserLocations() {
             var promise = new Promise(function (resolve, reject) {
-
+            const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
+            
                 $.ajax({
                     url: `https://baas.kinvey.com/user/${APP_ID}/${localStorage.getItem(USER_ID)}`,
                     method: 'GET',
@@ -129,7 +130,7 @@ const UsersManager = (function () {
 
                 if (locations.indexOf(location) === -1) {
 
-                    locations = that. addLocation(location, locations);
+                    locations = that.addLocation(location, locations);
 
                     var body = {
                         [USER_FAVOURITE_LOCATIONS] : locations

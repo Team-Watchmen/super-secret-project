@@ -60,8 +60,10 @@ const WeatherApp = (() => {
 
                                 users.login(logUser)
                                     .then(function (response) {
-                                        context.redirect('#/profile');
-                                        document.location.reload(true);
+                                        $(document.body).addClass("logged-in");
+
+                                        context.redirect('#/');
+                                        // document.location.reload(true);
                                     });
                             });
                         });
@@ -87,9 +89,9 @@ const WeatherApp = (() => {
                                     .then(function (response) {
                                         context.redirect('#/');
                                         // Slowing the reload down for the toaster success pop-up..
-                                        setTimeout(function () {
-                                            document.location.reload(true)
-                                        }, 2000);
+                                        // setTimeout(function () {
+                                        //     document.location.reload(true)
+                                        // }, 2000);
                                     });
 
                                 toastr.success("Congrats on your registration!");
@@ -208,10 +210,12 @@ const WeatherApp = (() => {
                 if (users.isUserLogged()) {
                     users.logout()
                         .then(function () {
+                            $(document.body).remove("logged-in");
+
                             location = "#/";
-                            setTimeout(function () {
-                                document.location.reload(true)
-                            }, 2000);
+                            // setTimeout(function () {
+                            //     document.location.reload(true)
+                            // }, 2000);
                         });
                     toastr.info("", "You just logged out!", { "positionClass": "toast-bottom-left", });
                 } else {
