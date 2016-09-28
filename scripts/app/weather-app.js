@@ -207,7 +207,7 @@ const WeatherApp = (() => {
                         .then(function () {
                             $(document.body).remove("logged-in");
 
-                            location = "#/";
+                            context.redirect('#/');
                         });
                     toastr.info("", "You just logged out!", { "positionClass": "toast-bottom-left", });
                 } else {
