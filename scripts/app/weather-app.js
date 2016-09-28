@@ -30,6 +30,8 @@ const WeatherApp = (() => {
             const isUserLoggedIn = users.isUserLogged();
             if (isUserLoggedIn) {
                 $(document.body).addClass("logged-in");
+            } else {
+                $(document.body).removeClass("logged-in");                
             }
 
             this.__app__.run('#/');
