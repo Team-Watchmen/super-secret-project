@@ -93,7 +93,7 @@ const WeatherApp = (() => {
 
                                 users.register(newUser)
                                     .then(function (response) {
-                                        context.redirect('#/');
+                                        context.redirect('#/login');
                                     });
 
                                 toastr.success("Congrats on your registration!");
