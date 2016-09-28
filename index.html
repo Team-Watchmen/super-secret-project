@@ -6,15 +6,38 @@
     <title>Super Secret Project</title>
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/toastr/package/toastr.css">
 
-    <meta property="og:url"           content="http://team-watchmen.herokuapp.com/" />
-	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="Team Watchmen Weather App" />
-	<meta property="og:description"   content="Get the latest weather forecast" />
-	<meta property="og:image"         content="" />
+    <meta property="og:url" content="http://team-watchmen.herokuapp.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Team Watchmen Weather App" />
+    <meta property="og:description" content="Get the latest weather forecast" />
+    <meta property="og:image" content="" />
+
+    <style>
+        body{
+            background-color: #333333;
+        }
+    </style>
 </head>
 
 <body>
+    <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container-fluid">
@@ -49,12 +72,14 @@
     </nav>
 
     <div id="content" class="container-fluid"></div>
-
+    
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/sammy/lib/sammy.js"></script>
     <script src="node_modules/handlebars/dist/handlebars.js"></script>
     <script src="node_modules/crypto-js/crypto-js.js"></script>
+    <script src="node_modules/toastr/toastr.js"></script>
+
 
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src="./scripts/system-config.js"></script>
