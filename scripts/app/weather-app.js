@@ -239,14 +239,11 @@ const WeatherApp = (() => {
 
             //logout
             $("#nav-btn-logout").on("click", function () {
-                const sammyContext = context;
-
                 if (users.isUserLogged()) {
                     users.logout()
                         .then(function () {
                             $(document.body).remove("logged-in");
-
-                            sammyContext.redirect('#/');
+                            window.location = '#/';
                         });
                     toastr.info("", "You just logged out!", { "positionClass": "toast-bottom-left", });
                 } else {
