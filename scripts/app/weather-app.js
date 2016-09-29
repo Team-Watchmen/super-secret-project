@@ -86,6 +86,9 @@ const WeatherApp = (() => {
                                         $(document.body).addClass("logged-in");
 
                                         context.redirect('#/profile');
+                                    })
+                                    .catch(function (ex) {
+                                        toastr.info(ex, { "positionClass": "toast-bottom-left", });
                                     });
                             });
                         });
@@ -111,7 +114,7 @@ const WeatherApp = (() => {
                                     .then(function (response) {
                                         context.redirect('#/login');
                                     })
-                                    .catch(function(ex) {
+                                    .catch(function (ex) {
                                         toastr.info(ex, { "positionClass": "toast-bottom-left", });
                                     });
 
@@ -226,9 +229,14 @@ const WeatherApp = (() => {
                         return;
                     }
 
-                    users.setUserLocations(newLocation);
-                    startProfileScreen();
-                    window.location = `#/profile/${newLocation}/1`;
+                    users.setUserLocations(newLocation)
+                        .then(function () {
+                            startProfileScreen();
+                            window.location = `#/profile/${newLocation}/1`;
+                        })
+                        .catch(function (ex) {
+                            toastr.info(ex, { "positionClass": "toast-bottom-left", });
+                        });
                 });
 
                 function startProfileScreen() {
