@@ -196,7 +196,7 @@ const WeatherApp = (() => {
 
                             container
                                 .find('#current-weather')
-                                .addClass('panel-default')                                
+                                .addClass('panel-default')
                                 .removeClass('panel-primary');
 
                             container
@@ -236,12 +236,14 @@ const WeatherApp = (() => {
 
             //logout
             $("#nav-btn-logout").on("click", function () {
+                const sammyContext = context;
+
                 if (users.isUserLogged()) {
                     users.logout()
                         .then(function () {
                             $(document.body).remove("logged-in");
 
-                            context.redirect('#/');
+                            sammyContext.redirect('#/');
                         });
                     toastr.info("", "You just logged out!", { "positionClass": "toast-bottom-left", });
                 } else {
