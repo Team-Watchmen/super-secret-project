@@ -1,4 +1,5 @@
 import { Encryptor } from './encriptor.js';
+import { Validator } from './../utils/validator.js';
 
 const UsersManager = (function () {
     const AUTH_TOKEN = 'auth-token';
@@ -19,6 +20,15 @@ const UsersManager = (function () {
 
         register(user) {
             var promise = new Promise(function (resolve, reject) {
+
+                try {
+                    validateUserInput(user.username);
+                    validateUserInput(user.password);
+                } catch (ex) {
+                    reject(ex.message);
+                    return;
+                }
+
                 var reqUser = {
                     username: user.username,
                     password: CryptoJS.SHA1(user.password).toString()
@@ -120,7 +130,7 @@ const UsersManager = (function () {
         setUserLocations(location) {
             const that = this;
             const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
-            
+
             var promise = new Promise(function (resolve, reject) {
                 var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
                 if (!locations) {
@@ -187,6 +197,12 @@ const UsersManager = (function () {
 
             return result;
         }
+    }
+
+    function validateUserInput(input, callback) {
+        Validator.isNullOrUndefined(input);
+        Validator.isEmptyString(input);
+        Validator.containsOnlyLettersAndDigits(input);
     }
 
     return UsersManager;

@@ -110,6 +110,9 @@ const WeatherApp = (() => {
                                 users.register(newUser)
                                     .then(function (response) {
                                         context.redirect('#/login');
+                                    })
+                                    .catch(function(ex) {
+                                        toastr.info(ex, { "positionClass": "toast-bottom-left", });
                                     });
 
                                 toastr.success("Congrats on your registration!");
