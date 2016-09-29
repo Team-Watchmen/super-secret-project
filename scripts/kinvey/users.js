@@ -26,6 +26,7 @@ const UsersManager = (function () {
                     validateUserInput(user.password);
                 } catch (ex) {
                     reject(ex.message);
+                    return;
                 }
 
                 var reqUser = {
