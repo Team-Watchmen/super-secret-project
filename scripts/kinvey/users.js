@@ -55,6 +55,15 @@ const UsersManager = (function () {
 
         login(logUser) {
             var promise = new Promise(function (resolve, reject) {
+
+                try {
+                    validateUserInput(logUser.username);
+                    validateUserInput(logUser.password);
+                } catch (ex) {
+                    reject(ex.message);
+                    return;
+                }
+
                 var reqUser = {
                     username: logUser.username,
                     password: CryptoJS.SHA1(logUser.password).toString()
@@ -132,6 +141,14 @@ const UsersManager = (function () {
             const sessionUserCredentials = localStorage.getItem(AUTH_TOKEN);
 
             var promise = new Promise(function (resolve, reject) {
+
+                try {
+                    validateAddedUserLocation(location);
+                } catch (ex) {
+                    reject(ex.message);
+                    return;
+                }
+
                 var locations = localStorage.getItem(USER_FAVOURITE_LOCATIONS);
                 if (!locations) {
                     locations = "";
@@ -199,10 +216,16 @@ const UsersManager = (function () {
         }
     }
 
-    function validateUserInput(input, callback) {
+    function validateUserInput(input) {
         Validator.isNullOrUndefined(input);
         Validator.isEmptyString(input);
         Validator.containsOnlyLettersAndDigits(input);
+    }
+
+    function validateAddedUserLocation(location) {
+        Validator.isNullOrUndefined(location);
+        Validator.isEmptyString(location);
+        Validator.containsOnlyLetters(location);
     }
 
     return UsersManager;
