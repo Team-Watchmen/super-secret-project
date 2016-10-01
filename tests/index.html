@@ -9,9 +9,17 @@
 <body>
     <div id="mocha"></div>
     <!-- scripts -->
+    <script src="../scripts/utils/validator.js"></script>
+    <!-- test libs and file -->
     <script src="./../node_modules/mocha/mocha.js"></script>
     <script src="./../node_modules/chai/chai.js"></script>
     <script src="./sinon-1.17.6"></script>
     <script src="./tests.js"></script>
+
+    <script src="../node_modules/systemjs/dist/system.js"></script>
+    <script src="system-config.js"></script>
+        <script>
+        System.import('./tests.js');
+    </script>
 </body>
 </html>
