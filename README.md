@@ -2,7 +2,7 @@
 
 # [video](https://www.youtube.com/watch?v=fc0IYpOxC9A)
 
-# [presentation](http://pro.ispringcloud.com/acc/65VSL6M2NTkw/view/6590-RcD7K-vgoQ9-WJKF1)
+# [presentation](http://ispri.ng/gNVZ)
 
 1. Kinvey requests
     - loginUser
