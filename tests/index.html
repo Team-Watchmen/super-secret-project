@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Secret Project Unit Tests</title>
+    <link rel="stylesheet" href="./../node_modules/mocha/mocha.css" />
+</head>
+<body>
+    <div id="mocha"></div>
+    <!-- scripts -->
+    <script src="../scripts/utils/validator.js"></script>
+    <!-- libs and tests file -->
+    <script src="./../bower_components/jquery/dist/jquery.js"></script>
+    <script src="./../node_modules/mocha/mocha.js"></script>
+    <script src="./../node_modules/chai/chai.js"></script>
+    <script src="./sinon-1.17.6.js"></script>
+    <script src="./tests.js"></script>
+
+    <script src="../node_modules/systemjs/dist/system.js"></script>
+    <script src="./system-config.js"></script>
+        <script>
+        System.import('./tests.js');
+    </script>
+</body>
+</html>
