@@ -1,4 +1,7 @@
 import { Validator } from '../scripts/utils/validator.js';
+import { geolocation } from '../scripts/maps/get-geolocation.js';
+import { UsersManager } from '../scripts/kinvey/users.js';
+import { Encryptor } from '../scripts/kinvey/encriptor.js';
 
 mocha.setup('bdd');
 
@@ -65,17 +68,132 @@ describe('Public scripts tests', function () {
 		});
 	});
 
-	describe(' tests', function () {
-
-		beforeEach(function () {
-
+	describe('geolocation tests', function () {
+		it('expect getCurrentPosition to return correct latitude', function (done) {
+			navigator.geolocation.getCurrentPosition = function (resolve, reject, options) {
+				let data = {
+					coords: {
+						latitude: 666,
+						longitude: 333
+					}
+				};
+				resolve(data);
+			};
+			geolocation.getCurrentGeolocation().
+				then((data) => {
+					let result = data;
+					expect(result.lat).to.equal(666);
+				})
+				.then(done, done);
 		});
+		it('expect getCurrentPosition to return correct longitude', function (done) {
+			navigator.geolocation.getCurrentPosition = function (resolve, reject, options) {
+				let data = {
+					coords: {
+						latitude: 666,
+						longitude: 333
+					}
+				};
+				resolve(data);
+			};
+			geolocation.getCurrentGeolocation().
+				then((data) => {
+					let result = data;
+					expect(result.lon).to.equal(333);
+				})
+				.then(done, done);
+		});
+	});
+
+	describe('UsersManager tests', function () {
 		afterEach(function () {
-
+			localStorage.clear();
 		});
+		const AUTH_TOKEN = 'auth-token';
+		const USER_NAME = 'user-name';
+		const USER_ID = "user-id";
+		const USER_FAVOURITE_LOCATIONS = "favourite-locations";
 
-		it('expect ', function () {
-			expect(2).to.equal(2);
+		it('expect logout to remove token from localStorage', function (done) {
+			let users = new UsersManager();
+
+			localStorage.setItem(AUTH_TOKEN, 'token');
+			localStorage.setItem(USER_NAME, 'pesho');
+			localStorage.setItem(USER_ID, 2);
+			localStorage.setItem(USER_FAVOURITE_LOCATIONS, '{1}');
+
+			users.logout()
+				.then(() => {
+					expect(localStorage.getItem(USER_ID)).to.equal(null);
+				})
+				.then(done, done);
+		});
+		it('expect logout to remove username from localStorage', function (done) {
+			let users = new UsersManager();
+
+			localStorage.setItem(AUTH_TOKEN, 'token');
+			localStorage.setItem(USER_NAME, 'pesho');
+			localStorage.setItem(USER_ID, 2);
+			localStorage.setItem(USER_FAVOURITE_LOCATIONS, '{1}');
+
+			users.logout()
+				.then(() => {
+					expect(localStorage.getItem(USER_NAME)).to.equal(null);
+				})
+				.then(done, done);
+		});
+		it('expect logout to remove user id from localStorage', function (done) {
+			let users = new UsersManager();
+
+			localStorage.setItem(AUTH_TOKEN, 'token');
+			localStorage.setItem(USER_NAME, 'pesho');
+			localStorage.setItem(USER_ID, 2);
+			localStorage.setItem(USER_FAVOURITE_LOCATIONS, '{1}');
+
+			users.logout()
+				.then(() => {
+					expect(localStorage.getItem(USER_ID)).to.equal(null);
+				})
+				.then(done, done);
+		});
+		it('expect logout to remove user favourite locations from localStorage', function (done) {
+			let users = new UsersManager();
+
+			localStorage.setItem(AUTH_TOKEN, 'token');
+			localStorage.setItem(USER_NAME, 'pesho');
+			localStorage.setItem(USER_ID, 2);
+			localStorage.setItem(USER_FAVOURITE_LOCATIONS, '{1}');
+
+			users.logout()
+				.then(() => {
+					expect(localStorage.getItem(USER_FAVOURITE_LOCATIONS)).to.equal(null);
+				})
+				.then(done, done);
+		});
+		it('expect isUserLogged to return correct username when user is logged in', function () {
+			let users = new UsersManager();
+			localStorage.setItem(AUTH_TOKEN, 'token');
+			localStorage.setItem(USER_NAME, 'pesho');
+			let result = users.isUserLogged();
+			expect(result.username).to.equal('pesho');
+		});
+		it('expect isUserLogged to return correct token when user is logged in', function () {
+			let users = new UsersManager();
+			localStorage.setItem(AUTH_TOKEN, 'token');
+			localStorage.setItem(USER_NAME, 'pesho');
+			let result = users.isUserLogged();
+			expect(result.token).to.equal('token');
+		});
+		it('expect isUserLogged to return null when user is not logged in', function () {
+			let users = new UsersManager();
+			let result = users.isUserLogged();
+			expect(result).to.equal(null);
+		});
+		it('expect addLocation to return correct array', function () {
+			let expected = ['Sofia', 'Frankfurt'];
+			let users = new UsersManager();
+			let result = users.addLocation(expected);
+			expect(result).to.equal(expected);
 		});
 	});
 });
