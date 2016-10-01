@@ -1,8 +1,8 @@
 # [super-secret-project](http://team-watchmen.herokuapp.com)
 
-# [video](https://www.youtube.com/watch?v=fc0IYpOxC9A)
+## [presentation](http://ispri.ng/gNVZ)
 
-# [presentation](http://ispri.ng/gNVZ)
+## [video](https://www.youtube.com/watch?v=fc0IYpOxC9A)
 
 1. Kinvey requests
     - loginUser
