@@ -16,7 +16,7 @@
     <meta property="og:image" content="" />
 
     <style>
-        body{
+        body {
             background-color: #333333;
         }
     </style>
@@ -71,7 +71,7 @@
                         <a href="#/profile">My Profile</a>
                     </li>
                     <li class="nav-btn-logout hidden-when-not-logged-in">
-                        <a id="nav-btn-logout"  href="#/">Logout</a>
+                        <a id="nav-btn-logout" href="#/">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -81,7 +81,7 @@
     </nav>
 
     <div id="content" class="container-fluid"></div>
-    
+
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/sammy/lib/sammy.js"></script>
@@ -89,21 +89,9 @@
     <script src="node_modules/crypto-js/crypto-js.js"></script>
     <script src="node_modules/toastr/toastr.js"></script>
 
-<script src="scripts/handlebars-helpers/helpers.js">
-    
-</script>
-<script src="app.bundle.js">
-    
-</script>
+    <script src="helpers.js"></script>
+    <script src="app.bundle.js"></script>
 
-    <!--<script src="./node_modules/systemjs/dist/system.js"></script>
-    <script src="./scripts/system-config.js"></script>
-    <script src="scripts/handlebars-helpers/helpers.js"></script>
-    <script>
-        System.import('main');
-        function initMap(){}
-    </script>
-    <!--Google API with special key below. Map does not work without this.-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDUQVimvvMF6OGukcy9Mh2kmzLKI7MsxM&callback=initMap" async
         defer></script>
 </body>
