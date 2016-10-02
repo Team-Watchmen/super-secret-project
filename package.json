@@ -33,7 +33,11 @@
     "toastr": "^2.1.2"
   },
   "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
     "chai": "^3.5.0",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "webpack": "^1.13.2"
   }
 }
